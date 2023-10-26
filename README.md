@@ -70,9 +70,6 @@ but this can be changed.
 set.seed(42)
 
 library(overcoverage)
-#> Registered S3 method overwritten by 'quantmod':
-#>   method            from
-#>   as.zoo.data.frame zoo
 
 main_pop <- create_population(
    size = 2e5,
@@ -114,7 +111,42 @@ g4 <- g + geom_histogram(aes(x = scaled_income),
                          fill = "royalblue", color = "grey75")
 
 g1 + g2 + g3 + g4
-#> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+## Presence in the country
+
+Given a fixed population, we can create a matrix with the information
+about when each one of these individuals were present in the country. We
+can assume either that all of them arrived in the first year or that
+they have arrived throughout a number of years. For the second option,
+we can select whether they arrived constantly or not.
+
+We control the probability of each individual leaving the country given
+a linear predictor, which is used within a logistic regression model.
+For instance, in the following example we can say that the probability
+of leaving the country, $\phi$, is a function of age groups only with
+the following equation
+
+$$\log \begin{pmatrix}\frac{\phi_i}{1 - \phi_i} \end{pmatrix} = \beta_0 + \beta_1 X_B + \beta_2 X_C,$$
+
+where $X_i$ is a indicator variable that is equal to 1, if `age_groups`
+is equal to $i$ and 0 otherwise. In the following example, we set
+$\beta_0 = 2$, $\beta_1 = -0.5$ and $\beta_2 = -1$ and we set the
+arrivals to happen constantly over 4 years.
+
+``` r
+presences <- create_presences(main_pop,
+   formula_phi = ~ age_groups,
+   coef_values = c(2.5, -0.5, -1),
+   years = 5, varying_arrival = TRUE)
+
+# checking how many presences each year
+colSums(presences)
+#> [1]  50000  94522 134216 169668 151283
+```
+
+## Creating lists
+
+We can create the
