@@ -114,8 +114,6 @@ presences <- create_presences(main_pop,
 colSums(presences)
 ```
 
-
-
 ## Creating lists 
 
 We can create the 
