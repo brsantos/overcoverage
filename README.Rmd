@@ -39,6 +39,62 @@ devtools::install_github("brsantos/overcoverage")
 
 ## Creating a population 
 
+Because this type of data is sensitive and not publicly available, we create functions that are able to recreate similar scenarios to showcase the use of this package.
+
+First, we can create a general database, with a similar purpose as the Register of Total Population (RTB) in Sweden. We assume that if someone enter the country, they are definitely in this dataset. For this use the function `create_population`.
+
+We can define how many people enter the country each year, for the purpose of comparison with different countries, for instance. We can create dummy variables, that could represent information such as sex (male or female), employed (yes or no), among others. We can create numerical variables that could represent income, age, time in the country, etc. And lastly, we can create factor variables with three levels. These could represent age groups, income groups or any other type of grouping. 
+
+In case there is interest in another type of variable, adaptation for this function are easy to implement. The binary variables are able to receive the proportion of successful cases, for instance. We can easily create a binary variable with equal proportion in the population, such as sex, or we could create a variable with the proportion of people employed, with values higher than 0.5 for example.
+
+In the following example, we show how to create a population of 200,000 individuals. We create 2 binary variables, with names `sex` and `higher_educated`. One categorical variable named `age_groups` and numerical variable called `scaled_income`. By default, the categories for the factor variable are sampled with probabilities 0.5, 0.3 and 0.2, but this can be changed. 
+
+```{r}
+set.seed(42)
+
+library(overcoverage)
+
+main_pop <- create_population(
+   size = 2e5,
+   n_bin = 2, 
+   n_cont_var = 1,
+   n_cat_var = 1,
+   prob_bin = c(0.5, 0.7), 
+   names_bin = c("sex", "higher_educated"), 
+   names_cont = "scaled_income", 
+   names_cat_var = "age_groups")
+```
+
+We can make plots to look at their distribution across the population. Because each variable is independent from the other, it seems that are bars have the same height, but there are slightly variations in each one of the bars.
+
+
+```{r}
+library(ggplot2)
+library(patchwork)
+
+g <- ggplot(main_pop) + theme_minimal()
+g1 <- g + geom_bar(aes(fill = factor(sex), 
+                       x = factor(higher_educated)), 
+                   position = "fill") + 
+  labs(x = "higher_educated") + 
+  scale_fill_viridis_d(name = "sex")
+g2 <- g + geom_bar(aes(fill = factor(higher_educated), 
+                       x = factor(sex)), 
+                   position = "fill") +
+  labs(x = "sex") + 
+  scale_fill_viridis_d(name = "higher_educated")
+g3 <- g + geom_bar(aes(fill = factor(age_groups), 
+                       x = factor(higher_educated)), 
+                   position = "fill") +
+  labs(x = "higher_educated") + 
+  scale_fill_viridis_d(name = "age_groups")
+g4 <- g + geom_histogram(aes(x = scaled_income), 
+                         fill = "royalblue", color = "grey75")
+
+g1 + g2 + g3 + g4
+```
+
+
 
 
 
