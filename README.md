@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# overcoverage <img src="man/figures/overcoverage.png" align="right" />
+# overcoverage <img src="man/figures/overcoverage_small.png" align="right" />
 
 A package to estimate overcoverage on register based data considering
 Multiple System Estimation (MSE) models, based on the package `conting`.
