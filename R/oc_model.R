@@ -58,7 +58,8 @@ oc_model <- function(model_formula,
   fp_lower <- apply(YY0, 2, quantile, (1 - prob_level)/2)
   fp_upper <- apply(YY0, 2, quantile, 1 - (1 - prob_level)/2)
 
-  oc_estimates <- (sum(freq_table$count) -  (obs_z + fp_sample)) /
+  oc_estimates <- (sum(freq_table$count) -
+                     (obs_z + fp_sample)) /
     sum(freq_table$count)
 
   list(oc_estimates = oc_estimates,
