@@ -36,7 +36,7 @@ sticker(
   p_y = 1.15,
   s_width = 2.5,
   s_height = 2.5,
-  filename = "inst/figures/overcoverage.png",
+  filename = "man/figures/overcoverage.png",
   p_family = "Oswald",
   p_color = "grey25",
   h_color = "grey75",

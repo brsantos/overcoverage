@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 
-# overcoverage <img src="inst/figures/overcoverage.png" align="right" />
+# overcoverage <img src="man/figures/overcoverage.png" align="right" />
 
 A package to estimate overcoverage on register based data considering Multiple System Estimation (MSE) models, based on the package `conting`. 
 
@@ -236,3 +236,83 @@ l1_he1 <- ggplot(filter(all_info, higher_educated == 1, presence == 1)) +
 
 l1_he0 + l1_he1
 ```
+
+## Modelling overcoverage
+
+Considering the observation of these different lists and the information of all people present in the country in a given year, we can compare how our model can help in the estimation of over-coverage.
+
+For instance, we can compare in year 5 how many people are detected in the three lists and how many are present in the country.
+
+```{r}
+# People observed at least once in the different lists in year 5.
+n_observed <- sum((l1[, 5] + l2[, 5] + l3[, 5]) > 0)
+
+
+# People present in the country in year 5.
+n_present <- sum(presences[, 5])
+
+# Difference
+n_present - n_observed 
+```
+
+So there is a difference of around 10 thousand individuals who are not seen in any of the lists in that given year.
+
+We can use our model to estimate that quantity and reach a new value for the number of individuals present in the country. Because we considered a high probability of leaving the country, between 8% and 20% for the different age groups, we do have a high number of overcoverage in this example. The real value is `1 - n_present / 200000`, which is equal to `r 1 - n_present / 200000`. An estimate considering a register trace approach, i.e., all individuals not seen in any list are considered over-covered, defined as `1 - n_observed / 200000`, would be equal to  `r 1 - n_observed / 200000`.
+
+In order to consider our approach, we need to build a contingency table with all possible combinations of variables available to us. We will consider year 5 to compare our estimate to the real value. First we will combine the information of lists 2 and 3 in a longer format and then combine all information in one data set, in order to create our contingency table more easily.
+
+```{r}
+info_l2 <- data.frame(
+  id = main_pop$id,
+  scaled_income = main_pop$scaled_income,
+  l2) %>% 
+  pivot_longer(cols = starts_with("X"), 
+               names_to = "year", 
+               names_prefix = "X", 
+               values_to = "l2")
+
+info_l3 <- data.frame(
+  id = main_pop$id,
+  l3) %>% 
+  pivot_longer(cols = starts_with("X"), 
+               names_to = "year", 
+               names_prefix = "X", 
+               values_to = "l3")
+
+final_dataset <- all_info %>% 
+  mutate(scaled_income = info_l2$scaled_income, 
+         l2 = info_l2$l2, 
+         l3 = info_l3$l3)
+```
+
+Because we are using contingency tables, we need to factorise `scaled_income`, which is a numerical variable. Considering that this variable was created with a standard normal distribution, we can consider the quantiles of the normal distribution to create three levels for it.
+
+```{r}
+final_dataset <- final_dataset %>% 
+  mutate(
+    scaled_income_fct = case_when(
+      scaled_income < qnorm(1/3) ~ "income_lv1", 
+      scaled_income < qnorm(2/3) ~ "income_lv2", 
+      .default = "income_lv3"
+    )
+  )
+
+table(final_dataset$scaled_income_fct) %>% prop.table()
+```
+
+Now we can create our contingency table considering with all possible combinations of variables and registers, filtering just data from year 5.
+
+```{r, message=FALSE}
+cont_table <- filter(final_dataset, year == 5) %>% 
+  group_by(
+    sex, age_groups, higher_educated, scaled_income_fct, 
+    l1, l2, l3) %>% 
+  summarise(qty = n())
+```
+
+
+
+
+
+
+
