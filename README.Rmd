@@ -114,10 +114,124 @@ presences <- create_presences(main_pop,
 colSums(presences)
 ```
 
-## Creating lists 
+For the purpose of all people being there at least one year, there are no arrivals in the last year. That's the reason why there are 50,000 arrivals in the first year and every year until year 4 and none in year 5.
 
-We can create the 
+We can see the effect of age groups in the probability of staying in the country by looking at the distribution of age groups over the years. The distribution changes over the years, while the distribution of sex does not change in comparison.
+
+```{r, message=FALSE}
+library(tidyr)
+library(dplyr)
+
+info_presence <- data.frame(
+  id = main_pop$id, 
+  age_groups = main_pop$age_groups, 
+  sex = main_pop$sex,
+  presences) %>% 
+  pivot_longer(cols = starts_with("X"), 
+               names_to = "year", 
+               names_prefix = "X", 
+               values_to = "presence")
+
+p1 <- ggplot(filter(info_presence, presence == 1)) +
+  theme_minimal() + 
+  geom_bar(aes(x = year, fill = age_groups), position = "fill") + 
+  scale_fill_viridis_d()
+
+p2 <- ggplot(filter(info_presence, presence == 1)) +
+  theme_minimal() + 
+  geom_bar(aes(x = year, fill = factor(sex)), position = "fill") + 
+  scale_fill_viridis_d(name = "sex")
+
+p1 + p2
+```
+
+## Creating lists/registers
+
+The model is based on the observation of individuals in different lists or registers. For instance, there could be a register with people being employed or a register with marriages. We can simulate these registers similarly to what we did with the probability of leaving the country. The probability of appearing in a given register can depend on different variables available in the main data set.
+
+Let's create three different lists, where the probability of appearing in each one of these lists will depend separately on three different variables we created: `sex`, `higher_educated` and `scaled_income`. This can be done in the following manner.
+
+```{r}
+l1 <- create_list_presences(
+  main_pop,
+  presences,
+  formula_prob = ~ sex, 
+  coef_values = c(1.5, -0.8))
+
+l2 <- create_list_presences(
+  main_pop,
+  presences,
+  formula_prob = ~ higher_educated, 
+  coef_values = c(0.5, -0.2))
+
+l3 <- create_list_presences(
+  main_pop,
+  presences,
+  formula_prob = ~ scaled_income, 
+  coef_values = c(-0.5, 1))
+```
+
+With these coefficient values used, we can calculate the probability of appearing in each one of the lists. For `l1`, we can say that people with `sex == 0` have a probability of appearing in the list equal to `r round(exp(1.5)/(1+exp(1.5)), 3)`, while for people with `sex == 1` the probability is equal to `r round(exp(0.7)/(1+exp(0.7)), 3)`. This can be calculated using the inverse of the logit function with 
+
+$$\frac{\exp(1.5)}{1 + \exp(1.5)} = `r round(exp(1.5)/(1+exp(1.5)), 3)` \quad  \mbox{ and } \quad \frac{\exp(1.5 - 0.8)}{1 + \exp(1.5 - 0.8)} = `r round(exp(0.7)/(1+exp(0.7)), 3)`$$
+
+We can observe this quantities using similar plots as before for the variation of the presence over the years.
+
+```{r}
+info_l1 <- data.frame(
+  id = main_pop$id,
+  higher_educated = main_pop$higher_educated,
+  sex = main_pop$sex,
+  l1) %>% 
+  pivot_longer(cols = starts_with("X"), 
+               names_to = "year", 
+               names_prefix = "X", 
+               values_to = "l1")
+
+# checking if the other of the ids is the same, so we merge the same information
+all.equal(info_presence$id, info_l1$id)
+all.equal(info_presence$year, info_l1$year)
+
+# if this was not the case, then a different approach would be necessary to 
+# join the bases
 
 
+# combining the columns since the ids are all the same
+all_info <- info_presence %>% 
+  mutate(higher_educated = info_l1$higher_educated, 
+         sex = info_l1$sex, 
+         l1 = info_l1$l1)
 
 
+l1_sex0 <- ggplot(filter(all_info, sex == 0, presence == 1)) +
+  theme_minimal() + 
+  geom_bar(aes(x = year, fill = factor(l1)), position = "fill") + 
+  scale_fill_viridis_d(name = "l1") + 
+  labs(title = "sex == 0")
+
+l1_sex1 <- ggplot(filter(all_info, sex == 1, presence == 1)) +
+  theme_minimal() + 
+  geom_bar(aes(x = year, fill = factor(l1)), position = "fill") + 
+  scale_fill_viridis_d(name = "l1") + 
+  labs(title = "sex == 1")
+
+l1_sex0 + l1_sex1
+```
+
+If we do the same plots, while considering the same list `l1`, but looking at the probability of being selected given variable `higher_educated`, we will see that they should have approximately the same probability of being selected to `l1`, roughly the average between `r round(exp(1.5)/(1+exp(1.5)), 3)` and `r round(exp(0.7)/(1+exp(0.7)), 3)`, which is `r round((exp(1.5)/(1+exp(1.5)) + exp(0.7)/(1+exp(0.7)))/2, 3)`
+
+```{r}
+l1_he0 <- ggplot(filter(all_info, higher_educated == 0, presence == 1)) +
+  theme_minimal() + 
+  geom_bar(aes(x = year, fill = factor(l1)), position = "fill") + 
+  scale_fill_viridis_d(name = "l1") + 
+  labs(title = "higher_educated == 0")
+
+l1_he1 <- ggplot(filter(all_info, higher_educated == 1, presence == 1)) +
+  theme_minimal() + 
+  geom_bar(aes(x = year, fill = factor(l1)), position = "fill") + 
+  scale_fill_viridis_d(name = "l1") + 
+  labs(title = "higher_educated == 1")
+
+l1_he0 + l1_he1
+```
