@@ -307,8 +307,54 @@ cont_table <- filter(final_dataset, year == 5) %>%
   group_by(
     sex, age_groups, higher_educated, scaled_income_fct, 
     l1, l2, l3) %>% 
-  summarise(qty = n())
+  summarise(count = n())
 ```
+
+In order to learn about the number of *false positives*, i.e., the number of individuals that are being considered over-covered, but actually are still in the country, we need to save the indexes of these values in another variable `cens_ind`, as being censored, so this is used in the estimation process.
+
+```{r}
+cont_table <- cont_table %>% 
+  mutate(cens = ifelse(l1 == 0 &
+                         l2 == 0 &
+                         l3 == 0, TRUE, FALSE))
+
+cens_ind <- which(cont_table$cens)
+```
+
+With those values saved, we can run the final function to get those estimates for over-coverage based on these MSE models. As we are using a Bayesian model with 
+
+```{r, eval=FALSE}
+# this might take a few minutes to run.
+model <- overcoverage::oc_model(
+      model_formula = count ~ sex*l1 + 
+        higher_educated*l2 + scaled_income_fct*l3 + age_groups,
+      freq_table = cont_table,
+      censored = cens_ind)
+```
+
+```{r, echo=FALSE}
+model <- readRDS("inst/example/model.rds")
+```
+
+We can get a summary of the estimates available in the object `model$oc_estimates` and compare with the true value. The following plot show the comparison between the true value and a credible interval with 95% probability.
+
+```{r}
+true_oc <- 1 - n_present / 2e5
+lower_oc <- quantile(model$oc_estimates, 0.025)
+upper_oc <- quantile(model$oc_estimates, 0.975)
+
+ggplot() + theme_minimal() +
+  geom_density(aes(model$oc_estimates), adjust = 1.5, 
+               fill = "grey75") + 
+  geom_vline(aes(xintercept = true_oc, color = "True vale"), 
+            linetype = 2, linewidth = 1.2) +
+  geom_vline(aes(xintercept = c(lower_oc, upper_oc), color = "Credible interval"), 
+            linetype = 3, linewidth = 1.2) +
+  labs(x = "Over-coverage estimates") +
+  scale_color_manual(name = "", values = c("red", "royalblue"))
+```
+
+We can clearly see that the model-based over-coverage gives a much better approximation of the true value, in comparison with the previous approach.
 
 
 
