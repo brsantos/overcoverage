@@ -9,6 +9,10 @@ Description: More about what it does (maybe more than one line)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: conting, tseries
+Imports: 
+    conting (>= 1.7),
+    tseries
 RoxygenNote: 7.2.3
 URL: https://brsantos.github.io/overcoverage/
+Remotes:  
+    cran/conting
