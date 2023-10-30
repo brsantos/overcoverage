@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   how-to-study-removal-lists: how-to-study-removal-lists.html
-last_built: 2023-10-30T09:45Z
+last_built: 2023-10-30T15:34Z
 urls:
   reference: https://brsantos.github.io/overcoverage/reference
   article: https://brsantos.github.io/overcoverage/articles

@@ -320,7 +320,7 @@
 <span>    <span class="va">sex</span>, <span class="va">age_groups</span>, <span class="va">higher_educated</span>, <span class="va">scaled_income_fct</span>, </span>
 <span>    <span class="va">l1</span>, <span class="va">l2</span>, <span class="va">l3</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>In order to learn about the number of <em>false positives</em>, i.e., the number of individuals that are being considered over-covered, but actually are still in the country, we need to save the indexes of these values in another variable <code>cens_ind</code>, as being censored, so this is used in the estimation process.</p>
+<p>In order to learn about the number of individuals that are being considered over-covered, but actually are still in the country, we need to save the indexes of these values in another variable <code>cens_ind</code>, as being censored, so this is used in the estimation process.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cont_table</span> <span class="op">&lt;-</span> <span class="va">cont_table</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>cens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">l1</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;</span></span>
@@ -332,8 +332,8 @@
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># this might take a few minutes to run.</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">overcoverage</span><span class="fu">::</span><span class="fu"><a href="reference/oc_model.html">oc_model</a></span><span class="op">(</span></span>
-<span>      model_formula <span class="op">=</span> <span class="va">count</span> <span class="op">~</span> <span class="va">sex</span><span class="op">*</span><span class="va">l1</span> <span class="op">+</span> </span>
-<span>        <span class="va">higher_educated</span><span class="op">*</span><span class="va">l2</span> <span class="op">+</span> <span class="va">scaled_income_fct</span><span class="op">*</span><span class="va">l3</span> <span class="op">+</span> <span class="va">age_groups</span>,</span>
+<span>      model_formula <span class="op">=</span> <span class="va">count</span> <span class="op">~</span> <span class="va">sex</span> <span class="op">*</span> <span class="va">l1</span> <span class="op">+</span> </span>
+<span>        <span class="va">higher_educated</span> <span class="op">*</span> <span class="va">l2</span> <span class="op">+</span> <span class="va">scaled_income_fct</span> <span class="op">*</span> <span class="va">l3</span> <span class="op">+</span> <span class="va">age_groups</span>,</span>
 <span>      freq_table <span class="op">=</span> <span class="va">cont_table</span>,</span>
 <span>      censored <span class="op">=</span> <span class="va">cens_ind</span><span class="op">)</span></span></code></pre></div>
 <p>We can get a summary of the estimates available in the object <code>model$oc_estimates</code> and compare with the true value. The following plot show the comparison between the true value and a credible interval with 95% probability.</p>
