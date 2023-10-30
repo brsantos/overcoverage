@@ -310,7 +310,7 @@ cont_table <- filter(final_dataset, year == 5) %>%
   summarise(count = n())
 ```
 
-In order to learn about the number of *false positives*, i.e., the number of individuals that are being considered over-covered, but actually are still in the country, we need to save the indexes of these values in another variable `cens_ind`, as being censored, so this is used in the estimation process.
+In order to learn about the number of individuals that are being considered over-covered, but actually are still in the country, we need to save the indexes of these values in another variable `cens_ind`, as being censored, so this is used in the estimation process.
 
 ```{r}
 cont_table <- cont_table %>% 
@@ -326,8 +326,8 @@ With those values saved, we can run the final function to get those estimates fo
 ```{r, eval=FALSE}
 # this might take a few minutes to run.
 model <- overcoverage::oc_model(
-      model_formula = count ~ sex*l1 + 
-        higher_educated*l2 + scaled_income_fct*l3 + age_groups,
+      model_formula = count ~ sex * l1 + 
+        higher_educated * l2 + scaled_income_fct * l3 + age_groups,
       freq_table = cont_table,
       censored = cens_ind)
 ```
