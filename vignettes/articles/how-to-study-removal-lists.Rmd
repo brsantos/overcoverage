@@ -1,0 +1,16 @@
+---
+title: "How to study the effect of removing one list in the estimation of over-coverage"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(overcoverage)
+```
+
+To write it here all details of the simulation study.

@@ -4,15 +4,13 @@ Title: Over-coverage estimate based on MSE models
 Version: 0.1.0
 Authors@R: c(
     person("Bruno", "Santos", , "b.santos@kent.ac.uk", role = c("aut", "cre")),
-    person("Eleni", "Matechou", , "e.matechou@kent.ac.uk", role = "ctb"),
-    person("Eleonora", "Mussino", , "eleonora.mussino@sociology.su.se", role = "ctb"),
-    person("Sven", "Drefahl", , "sven.drefahl@sociology.su.se", role = "ctb"),
-    person("Andrea", "Monti", , "andrea.monti@sociology.su.se", role = "ctb")
+    person("Eleni", "Matechou", , "e.matechou@kent.ac.uk", role = "aut"),
+    person("Eleonora", "Mussino", , "eleonora.mussino@sociology.su.se", role = "aut"),
+    person("Sven", "Drefahl", , "sven.drefahl@sociology.su.se", role = "aut"),
+    person("Andrea", "Monti", , "andrea.monti@sociology.su.se", role = "aut")
   )
 Description: Estimation of over-coverage based on register data, 
-    considering log-linear models, wrapping functions from package 'conting'
-    into this context. It also provides functions to simulate population 
-    data with registers type of observation.
+    considering log-linear models, wrapping functions from package 'conting'.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -23,3 +21,4 @@ RoxygenNote: 7.2.3
 URL: https://brsantos.github.io/overcoverage/
 Remotes: 
     cran/conting
+Config/Needs/website: rmarkdown
