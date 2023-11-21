@@ -116,10 +116,45 @@ the following:</p>
                                      years <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p>If <span class="math inline">\(B_1\)</span> represents
 <code>bin1</code> and <span class="math inline">\(\phi\)</span> is the
-probability of leaving the country each year, we considering the
-following logistic regression to calculate those probabilities</p>
+probability of staying in the country (usually known as
+<em>surviving</em>, in the capture-recapture literature) each year, we
+considering the following logistic regression to calculate those
+probabilities</p>
 <p><span class="math display">\[\log \begin{pmatrix}\frac{\phi}{1 -
 \phi} \end{pmatrix} = 2 - B_1,\]</span></p>
+<p>With this equation, we are creating two probabilities of staying in
+the country, when <span class="math inline">\(B_1 = 0\)</span> or when
+<span class="math inline">\(B_1 = 1\)</span>, which are calculated
+respectively as</p>
+<p><span class="math display">\[\frac{\exp(2)}{1 + \exp(2)} = 0.881
+\quad  \mbox{ and } \quad \frac{\exp(2 - 1)}{1 + \exp(2 - 2)} =
+0.731.\]</span></p>
+<p>For each simulation step we also create 3 lists, <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>
+and <span class="math inline">\(Z\)</span>, using the function
+<code>create_list_presences</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_list_presences.html">create_list_presences</a></span><span class="op">(</span><span class="va">main_list</span>, presences <span class="op">=</span> <span class="va">true_presences</span>, 
+                           formula_prob <span class="op">=</span> <span class="op">~</span> <span class="va">bin1</span>, 
+                           coef_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>
+   
+<span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_list_presences.html">create_list_presences</a></span><span class="op">(</span><span class="va">main_list</span>, presences <span class="op">=</span> <span class="va">true_presences</span>,
+                           formula_prob <span class="op">=</span> <span class="op">~</span> <span class="va">bin2</span>, 
+                           coef_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>
+  
+<span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_list_presences.html">create_list_presences</a></span><span class="op">(</span><span class="va">main_list</span>, presences <span class="op">=</span> <span class="va">true_presences</span>,
+                           formula_prob <span class="op">=</span> <span class="op">~</span> <span class="va">bin3</span>, 
+                           coef_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>The argument <code>formula_prob</code> controls which variables are
+used to calculate the probability of being observed in each list. As we
+have said previously, we are considering the 3 different binary
+variables (<code>bin1</code>, <code>bin2</code> and <code>bin3</code>)
+separately for each list. The values in the argument
+<code>coef_values</code> are used in the logistic regression to generate
+the observation in each list. For instance, for list <span class="math inline">\(X\)</span> we are calculating the following</p>
+<p><span class="math display">\[\log \begin{pmatrix}\frac{P(X =
+1|B_1)}{1 - P(X = 1|B = 1)} \end{pmatrix} = 1.5 - 0.5 \cdot
+B_1,\]</span></p>
+<p>which gives us estimated probabilities of 0.818 and 0.731 for <span class="math inline">\(B_1 = 0\)</span> and <span class="math inline">\(B_1 = 1\)</span>, respectively.</p>
 </div>
 <div class="section level2">
 <h2 id="simulation-setup">Simulation setup<a class="anchor" aria-label="anchor" href="#simulation-setup"></a>
