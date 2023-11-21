@@ -9,9 +9,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(overcoverage)
-```
 
 In the electronic supplementary material of our paper, there is a simulation study where we discussed the different effects when removing registers in the estimation of our model. The link and the info for the paper follows:
 
@@ -48,6 +45,9 @@ true_presences <- create_presences(main_list,
                                      years = 2)
 ```
 
+If $B_1$ represents `bin1` and $\phi$ is the probability of leaving the country each year, we considering the following logistic regression to calculate those probabilities
+
+$$\log \begin{pmatrix}\frac{\phi}{1 - \phi} \end{pmatrix} = 2 - B_1,$$
 
 
 ## Simulation setup

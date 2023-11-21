@@ -70,13 +70,71 @@
 
     
     
+<p>In the electronic supplementary material of our paper, there is a
+simulation study where we discussed the different effects when removing
+registers in the estimation of our model. The link and the info for the
+paper follows:</p>
+<ul>
+<li>Mussino, E., Santos, B., Monti, A. et al. Multiple systems
+estimation for studying over-coverage and its heterogeneity in
+population registers. <strong>Quality &amp; Quantity</strong> (2023). <a href="https://doi.org/10.1007/s11135-023-01757-x" class="external-link uri">https://doi.org/10.1007/s11135-023-01757-x</a>
+</li>
+</ul>
+<p>Here we discuss the different steps of the simulation study and show
+how to reproduce the experiment.</p>
+<div class="section level2">
+<h2 id="initial-setup">Initial Setup<a class="anchor" aria-label="anchor" href="#initial-setup"></a>
+</h2>
+<p>For this simultation, we need to generate new population according to
+the same rules for every replication of the study. In the same way, we
+create 3 lists, <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>, where the probability of being
+observed always follows the same function. For this experiment, we
+create 3 binary variables that are used separately in the probability
+function in each one of the lists.</p>
+<p>The initial step is to generate the population, where we create one
+continuous and one categorical variable, although they will not be used
+for the study. The function just needs to create at least one variable
+of these types.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://brsantos.github.io/overcoverage/">overcoverage</a></span><span class="op">)</span>
-<span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span>
-<span class="co">#&gt;   method            from</span>
-<span class="co">#&gt;   as.zoo.data.frame zoo</span></code></pre></div>
-<p>To write it here all details of the simulation study.</p>
-  </main>
+<span class="va">main_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_population.html">create_population</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1e6</span>,
+                                 n_bin_var <span class="op">=</span> <span class="fl">3</span>, 
+                                 n_cont_var <span class="op">=</span> <span class="fl">1</span>,
+                                 n_cat_var <span class="op">=</span> <span class="fl">1</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span>, 
+                                 <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bin1"</span>, <span class="st">"bin2"</span>, <span class="st">"bin3"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>We assume that individuals will leave the country according to a
+logistic model and using <code>bin1</code> variable as the covariate to
+write this probability. Using the <code>create_presences</code> function
+from our package and considering only 2 years of observation, we have
+the following:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">true_presences</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_presences.html">create_presences</a></span><span class="op">(</span><span class="va">main_list</span>, 
+                                     formula_phi <span class="op">=</span> <span class="op">~</span> <span class="va">bin1</span>,
+                                     coef_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>,
+                                     varying_arrival <span class="op">=</span> <span class="cn">TRUE</span>,
+                                     years <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<p>If <span class="math inline">\(B_1\)</span> represents
+<code>bin1</code> and <span class="math inline">\(\phi\)</span> is the
+probability of leaving the country each year, we considering the
+following logistic regression to calculate those probabilities</p>
+<p><span class="math display">\[\log \begin{pmatrix}\frac{\phi}{1 -
+\phi} \end{pmatrix} = 2 - B_1,\]</span></p>
+</div>
+<div class="section level2">
+<h2 id="simulation-setup">Simulation setup<a class="anchor" aria-label="anchor" href="#simulation-setup"></a>
+</h2>
+</div>
+<div class="section level2">
+<h2 id="analysis-of-the-results">Analysis of the results<a class="anchor" aria-label="anchor" href="#analysis-of-the-results"></a>
+</h2>
+</div>
+<div class="section level2">
+<h2 id="final-discussion">Final discussion<a class="anchor" aria-label="anchor" href="#final-discussion"></a>
+</h2>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
