@@ -25,7 +25,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{model_oc <- oc_model(
+#' \dontrun{
+#' model_oc <- oc_model(
 #'  qty ~ bin1 * list1 + cat1 * list2,
 #'  freq_table,
 #'  cens_ind)}
@@ -42,8 +43,8 @@ oc_model <- function(model_formula,
   model <- bict2(
     formula = model_formula,
     data = freq_table,
-    cens = cens_ind,
-    n.sample = 2000,
+    cens = censored,
+    n.sample = nsample,
     null.move.prob = null.move.prob, ...)
 
   if (n.burnin > 0) {
