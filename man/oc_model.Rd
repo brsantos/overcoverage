@@ -51,7 +51,8 @@ The `oc_model()` function is able to get an estimate of over-coverage in a
   population based on register data and log-linear models.
 }
 \examples{
-\dontrun{model_oc <- oc_model(
+\dontrun{
+model_oc <- oc_model(
  qty ~ bin1 * list1 + cat1 * list2,
  freq_table,
  cens_ind)}

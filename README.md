@@ -280,8 +280,7 @@ l1_sex0 + l1_sex1
 If we do the same plots, while considering the same list `l1`, but
 looking at the probability of being selected given variable
 `higher_educated`, we will see that they should have approximately the
-same probability of being selected to `l1`, roughly the average between
-0.818 and 0.668, which is 0.743
+same probability of being selected to `l1`, roughly the average between 0.818 and 0.668, which is 0.743.
 
 ``` r
 l1_he0 <- ggplot(filter(all_info, higher_educated == 0, presence == 1)) +
@@ -440,7 +439,7 @@ upper_oc <- quantile(model$oc_estimates, 0.975)
 ggplot() + theme_minimal() +
   geom_density(aes(model$oc_estimates), adjust = 1.5, 
                fill = "grey75") + 
-  geom_vline(aes(xintercept = true_oc, color = "True vale"), 
+  geom_vline(aes(xintercept = true_oc, color = "True value"), 
             linetype = 2, linewidth = 1.2) +
   geom_vline(aes(xintercept = c(lower_oc, upper_oc), color = "Credible interval"), 
             linetype = 3, linewidth = 1.2) +

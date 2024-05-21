@@ -219,7 +219,7 @@ l1_sex1 <- ggplot(filter(all_info, sex == 1, presence == 1)) +
 l1_sex0 + l1_sex1
 ```
 
-If we do the same plots, while considering the same list `l1`, but looking at the probability of being selected given variable `higher_educated`, we will see that they should have approximately the same probability of being selected to `l1`, roughly the average between `r round(exp(1.5)/(1+exp(1.5)), 3)` and `r round(exp(0.7)/(1+exp(0.7)), 3)`, which is `r round((exp(1.5)/(1+exp(1.5)) + exp(0.7)/(1+exp(0.7)))/2, 3)`
+If we do the same plots, while considering the same list `l1`, but looking at the probability of being selected given variable `higher_educated`, we will see that they should have approximately the same probability of being selected to `l1`, roughly the average between `r round(exp(1.5)/(1+exp(1.5)), 3)` and `r round(exp(0.7)/(1+exp(0.7)), 3)`, which is `r round((exp(1.5)/(1+exp(1.5)) + exp(0.7)/(1+exp(0.7)))/2, 3)`.
 
 ```{r}
 l1_he0 <- ggplot(filter(all_info, higher_educated == 0, presence == 1)) +
@@ -346,7 +346,7 @@ upper_oc <- quantile(model$oc_estimates, 0.975)
 ggplot() + theme_minimal() +
   geom_density(aes(model$oc_estimates), adjust = 1.5, 
                fill = "grey75") + 
-  geom_vline(aes(xintercept = true_oc, color = "True vale"), 
+  geom_vline(aes(xintercept = true_oc, color = "True value"), 
             linetype = 2, linewidth = 1.2) +
   geom_vline(aes(xintercept = c(lower_oc, upper_oc), color = "Credible interval"), 
             linetype = 3, linewidth = 1.2) +

@@ -4,6 +4,7 @@ title: "How to study the effect of removing one list in the estimation of over-c
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  message = FALSE,
   collapse = TRUE,
   comment = "#>"
 )
@@ -25,19 +26,19 @@ For this simultation, we need to generate new population according to the same r
 
 The initial step is to generate the population, where we create one continuous and one categorical variable, although they will not be used for the study. The function just needs to create at least one variable of these types.
 
-```{r, eval = FALSE}
+```{r}
 library(overcoverage)
+set.seed(42)
 main_list <- create_population(size = 1e6,
                                  n_bin_var = 3, 
                                  n_cont_var = 1,
                                  n_cat_var = 1,
-                                 c(0.5), 
-                                 c("bin1", "bin2", "bin3"))
+                                 c(0.5))
 ```
 
 We assume that individuals will leave the country according to a logistic model and using `bin1` variable as the covariate to write this probability. Using the `create_presences` function from our package and considering only 2 years of observation, we have the following:
 
-```{r, eval=FALSE}
+```{r}
 true_presences <- create_presences(main_list, 
                                      formula_phi = ~ bin1,
                                      coef_values = c(2, -1),
@@ -55,7 +56,7 @@ $$\frac{\exp(2)}{1 + \exp(2)} = `r round(exp(2)/(1+exp(2)), 3)` \quad  \mbox{ an
 
 For each simulation step we also create 3 lists, $X$, $Y$ and $Z$, using the function `create_list_presences`.
 
-```{r, eval=FALSE}
+```{r}
 X <- create_list_presences(main_list, presences = true_presences, 
                            formula_prob = ~ bin1, 
                            coef_values = c(1.5, -0.5))
@@ -73,10 +74,267 @@ The argument `formula_prob` controls which variables are used to calculate the p
 
 $$\log \begin{pmatrix}\frac{P(X = 1|B_1)}{1 - P(X = 1|B = 1)} \end{pmatrix} = 1.5 - 0.5 \cdot B_1,$$
 
-which gives us estimated probabilities of `r round(exp(1.5)/(1+exp(1.5)), 3)` and  `r round(exp(1)/(1+exp(1)), 3)` for $B_1 = 0$ and $B_1 = 1$, respectively.
+which gives us estimated probabilities of `r round(exp(1.5)/(1+exp(1.5)), 3)` and  `r round(exp(1)/(1+exp(1)), 3)` for $B_1 = 0$ and $B_1 = 1$, respectively. 
 
+Now we just need to recreate the scenarios where we use just part of tesse lists to estimate the over-coverage. For this particular toy example, the true value of over-coverage in the second year is given by
+
+```{r}
+n_present <- sum(true_presences[, 2])
+true_oc <- 1 - n_present/nrow(main_list)
+true_oc
+```
+
+
+## Removing lists and estimating over-coverage
+
+At this step, we need to run the model to estimate the over-coverage and repeat the same procedure removing one of the lists, for instance. Considering all lists, we could run the following to estimate the over-coverage
+
+```{r, eval=FALSE}
+library(dplyr)
+all_data <- 
+  cbind(bin1 = main_list$bin1,
+        bin2 = main_list$bin2,
+        bin3 = main_list$bin3,
+        X = X[, 2],
+        Y = Y[, 2],
+        Z = Z[, 2]) %>%
+      as.data.frame()
+    
+freq_data <- all_data %>%
+  group_by(bin1, bin2, bin3, X, Y, Z) %>%
+  summarise(count = n())
+
+freq_data <- freq_data %>%
+  mutate(cens = ifelse(X == 0 &
+                       Y == 0 &
+                       Z == 0, TRUE, FALSE))
+
+cens_ind <- which(freq_data$cens)
+    
+model <- overcoverage::oc_model(
+      model_formula = count ~ bin1 * X + bin2 * Y + bin3 * Z, 
+      freq_table = freq_data, censored = cens_ind)
+```
+
+Given this model, we can estimate our over-coverage as
+
+```{r, echo=FALSE}
+library(dplyr)
+model <- readRDS("../../inst/example/vignette1.rds")
+```
+
+```{r}
+mean(model$oc_estimates)
+```
+
+And a credible interval with 95% of probability can be calculated as 
+
+```{r}
+quantile(model$oc_estimates, c(0.025, 0.975))
+```
+
+A density plot of our estimates with the true value can be obtained with 
+
+```{r}
+library(ggplot2)
+
+ggplot() + 
+  theme_minimal() + 
+  geom_density(aes(model$oc_estimates), adjust = 1.5, 
+               fill = "royalblue") +
+  geom_vline(aes(xintercept = true_oc, color = "True value"), linetype = 2) +
+  labs(x = "Model-based over-coverage estimates") + 
+  scale_color_manual(name = "", values = "red") + 
+  theme(legend.position = "bottom")
+```
+
+To estimate the model without list $X$ for instance, we would need to run the following code. We need to change the censored observations index before running the code
+
+```{r, eval=FALSE}
+# removing X
+
+freq_data_x <- all_data %>%
+  group_by(bin1, bin2, bin3, Y, Z) %>%
+  summarise(count = n())
+
+freq_data_x <- freq_data_x %>%
+  mutate(cens = ifelse(Y == 0 &
+                         Z == 0, TRUE, FALSE))
+
+cens_ind <- which(freq_data_x$cens)
+    
+model_x <- overcoverage::oc_model(
+      model_formula = 
+        count ~ bin1 + bin2 * Y + bin3 * Z, 
+      freq_table = freq_data_x, 
+      censored = cens_ind, 
+      nsample = 60000, 
+      n.burnin = 50000, 
+      thin = 10)
+```
+
+```{r, echo=FALSE}
+oc_estimates <- readRDS("../../inst/example/vignette2.rds")
+model_x <- as.data.frame(oc_estimates)
+```
+
+
+Now, our mean posterior estimates and 95% credible intervals will be given by
+
+```{r}
+mean(model_x$oc_estimates)
+```
+
+```{r}
+quantile(model_x$oc_estimates, c(0.025, 0.975))
+```
 
 ## Simulation setup
+
+For the simulation, we will consider the same data set for every replication of the study and we estimate over-coverage with all lists and removing one list at a time. In order to make the simulations easier, we write a function to run one replicate, where we create one data set and return all the different over-coverage estimates.
+
+```{r, eval=FALSE}
+sim_mse <- function(seed){
+  
+  set.seed(seed)
+
+  n_years <- 2
+  
+  ## Creating population
+  main_list <- create_population(size = 1e6,
+                                 n_bin_var = 3, 
+                                 n_cont_var = 1,
+                                 n_cat_var = 1,
+                                 c(0.5))
+  
+  true_presences <- create_presences(main_list, 
+                                     formula_phi = ~ bin1,
+                                     coef_values = c(2, -1),
+                                     varying_arrival = TRUE,
+                                     years = n_years)
+  
+  # calculating the true over-coverage at year 2.
+  true_oc <- 1 - true_presences[, n_years] / nrow(main_list)
+  
+  X <- create_list_presences(main_list, 
+                             presences = true_presences,
+                             ~ bin1, 
+                             c(1.5, -0.5))
+   
+  Y <- create_list_presences(main_list, 
+                             presences = true_presences,
+                             ~ bin2, 
+                             c(-0.5, -0.5))
+  
+  Z <- create_list_presences(main_list, 
+                             presences = true_presences,
+                             ~ bin3, 
+                             c(-1.5, -0.5))
+  
+  new_data <- 
+  cbind(bin1 = main_list$bin1,
+        bin2 = main_list$bin2,
+        bin3 = main_list$bin3,
+        X = X[, 2],
+        Y = Y[, 2],
+        Z = Z[, 2]) %>%
+      as.data.frame()
+  
+  sim_cases <- list()
+  
+  freq_data <- new_data %>%
+    group_by(bin1, bin2, bin3, X, Y, Z) %>%
+    summarise(count = n())
+  
+  freq_data <- freq_data %>%
+    mutate(cens = ifelse(X == 0 &
+                         Y == 0 &
+                         Z == 0, TRUE, FALSE))
+  
+  cens_ind <- which(freq_data$cens)
+  
+  sim_cases[[1]] <- oc_model(
+    count ~ bin1 * X + bin2 * Y + bin3 * Z,
+    freq_table = freq_data,
+    cens = cens_ind, 
+    nsample = 60000,
+    n.burnin = 50000, 
+    thin = 10)
+  
+  freq_data_x <- new_data %>%
+    group_by(bin1, bin2, bin3, Y, Z) %>%
+    summarise(count = n())
+    
+  freq_data_x <- freq_data_x %>%
+      mutate(cens = ifelse(Y == 0 &
+                           Z == 0, TRUE, FALSE))
+    
+  cens_ind_x <- which(freq_data_x$cens)
+    
+  sim_cases[[2]] <- oc_model(
+    count ~ bin1 + bin2 * Y + bin3 * Z,
+    freq_table = freq_data_x,
+    cens = cens_ind_x, 
+    nsample = 60000,
+    n.burnin = 50000, 
+    thin = 10) 
+  
+  freq_data_y <- new_data %>%
+    group_by(bin1, bin2, bin3,
+             X, Z) %>%
+    summarise(count = n())
+    
+  freq_data_y <- freq_data_y %>%
+    mutate(cens = ifelse(X == 0 &
+                         Z == 0, TRUE, FALSE))
+    
+  cens_ind_y <- which(freq_data_y$cens)
+    
+  sim_cases[[3]] <- oc_model(
+    count ~ bin1 * X + bin2 + bin3 * Z,
+    freq_table = freq_data_y,
+    cens = cens_ind_y, 
+    nsample = 60000,
+    n.burnin = 50000, 
+    thin = 10) 
+
+  freq_data_z <- new_data %>%
+      group_by(bin1, bin2, bin3, X, Y) %>%
+      summarise(count = n())
+    
+  freq_data_z <- freq_data_z %>%
+    mutate(cens = ifelse(X == 0 & 
+                           Y == 0, TRUE, FALSE))
+    
+  cens_ind_z <- which(freq_data_z$cens)
+    
+  sim_cases[[4]] <- oc_model(
+    count ~ bin1 * X + bin2 * Y + bin3,
+    freq_table = freq_data_z,
+    cens = cens_ind_z, 
+    nsample = 60000,
+    n.burnin = 50000, 
+    thin = 10)
+  
+  list(
+    relat_mean = sapply(sim_cases, function(a) mean(a$oc_estimates)/true_oc),
+    relat_q = sapply(sim_cases, function(a) 
+      quantile(a$oc_estimates, c(0.025, 0.975))/true_oc))
+
+}
+```
+
+Now we can write a function to call the same function a number of times and record their results. We can do that with `lapply` or `purrr::map`, but here we will use the former, obtaining 50 replicates. 
+
+```{r, eval=FALSE}
+simulations <- lapply(1:50, sim_mse)
+```
+
+If we use a machine with multiple cores and a compatible operational system, we can put this simulation study with multiple cores. For instance, using the package `parallel`, we could run the following defining the number of cores with the argument `mc.cores`. 
+
+```{r, eval=FALSE}
+simulations <- parallel::mclapply(1:50, sim_mse, mc.cores = 5)
+```
 
 ## Analysis of the results
 
