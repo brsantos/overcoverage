@@ -10,7 +10,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 In the electronic supplementary material of our paper, there is a simulation study where we discussed the different effects when removing registers in the estimation of our model. The link and the info for the paper follows:
 
 - Mussino, E., Santos, B., Monti, A. et al. Multiple systems estimation
@@ -335,8 +334,3 @@ If we use a machine with multiple cores and a compatible operational system, we 
 ```{r, eval=FALSE}
 simulations <- parallel::mclapply(1:50, sim_mse, mc.cores = 5)
 ```
-
-## Analysis of the results
-
-## Final discussion
-
