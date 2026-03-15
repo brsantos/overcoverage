@@ -1,0 +1,18 @@
+url: https://brsantos.github.io/overcoverage2/
+
+template:
+  bootstrap: 5
+
+home:
+  title: overcoverage2
+  description: Capture-Recapture Hidden Markov Models for register-based population inference.
+
+reference:
+  - title: Models
+    contents:
+      - model_BLB
+      - model_nonBLB
+  - title: Helpers
+    contents:
+      - compute_mixing_weights
+      - compute_viterbi_paths
