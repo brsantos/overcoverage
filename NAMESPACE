@@ -1,0 +1,7 @@
+importFrom(Rcpp, evalCpp)
+useDynLib(overcoverage2, .registration = TRUE)
+export(model_BLB)
+export(model_nonBLB)
+export(compute_mixing_weights)
+export(compute_viterbi_paths)
+importFrom(stats, nlm, optim, rnorm, runif, sd)
