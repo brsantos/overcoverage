@@ -6,6 +6,7 @@ template:
 home:
   title: overcoverage2
   description: Capture-Recapture Hidden Markov Models for register-based population inference.
+  strip_header: true
 
 reference:
   - title: Models
