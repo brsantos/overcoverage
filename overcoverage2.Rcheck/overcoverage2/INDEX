@@ -1,0 +1,5 @@
+compute_mixing_weights
+                        Compute mixing probabilities for a partition
+compute_viterbi_paths   Compute Viterbi paths for each individual
+model_BLB               Run the BLB model
+model_nonBLB            Fit the non-BLB model

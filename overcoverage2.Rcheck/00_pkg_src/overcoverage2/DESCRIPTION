@@ -1,0 +1,31 @@
+Package: overcoverage2
+Type: Package
+Title: Capture-Recapture Hidden Markov Models for Register-Based
+        Population Inference
+Version: 0.1.0
+Authors@R: c(
+    person("Lucy", "Brown", role = "aut"),
+    person("Eleni", "Matechou", role = "aut"),
+    person("Bruno", "Santos", role = c("aut", "cre"),
+           email = "brdsantos@fc.ul.pt"),
+    person("Eleonora", "Mussino", role = "aut")
+  )
+Description: Implements a capture-recapture hidden Markov model framework for
+    register-based inference of population size and dynamics, allowing false
+    positive and false negative observation error, temporary emigration, and
+    multiple interacting registers. Provides maximum likelihood estimation and
+    uncertainty quantification via the Bag of Little Bootstraps, with support
+    for covariates and unobserved heterogeneity to study overcoverage in
+    population registers.
+License: GPL-3
+Encoding: UTF-8
+Imports: Rcpp (>= 1.0.14), RcppParallel, stats
+LinkingTo: Rcpp, RcppArmadillo, RcppParallel
+Suggests: pkgdown
+NeedsCompilation: yes
+Packaged: 2026-03-15 23:01:28 UTC; macadmin
+Author: Lucy Brown [aut],
+  Eleni Matechou [aut],
+  Bruno Santos [aut, cre],
+  Eleonora Mussino [aut]
+Maintainer: Bruno Santos <brdsantos@fc.ul.pt>

@@ -1,0 +1,26 @@
+* installing *source* package ‘overcoverage2’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘Apple clang version 17.0.0 (clang-1700.0.13.5)’
+using SDK: ‘’
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppArmadillo/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c RcppExports.cpp -o RcppExports.o
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppArmadillo/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c lihelihood_ultrafast.cpp -o lihelihood_ultrafast.o
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppArmadillo/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c likelihood_cpp.cpp -o likelihood_cpp.o
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppArmadillo/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c likelihood_fast.cpp -o likelihood_fast.o
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppArmadillo/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c loglikelihood_BLB.cpp -o loglikelihood_BLB.o
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppArmadillo/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c loglikelihood_nonBLB.cpp -o loglikelihood_nonBLB.o
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppArmadillo/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c mixing_probabilities.cpp -o mixing_probabilities.o
+clang++ -arch arm64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/Rcpp/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppArmadillo/include' -I'/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/include' -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c viterbi.cpp -o viterbi.o
+clang++ -arch arm64 -std=gnu++17 -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -L/Library/Frameworks/R.framework/Resources/lib -L/opt/R/arm64/lib -o overcoverage2.so RcppExports.o lihelihood_ultrafast.o likelihood_cpp.o likelihood_fast.o loglikelihood_BLB.o loglikelihood_nonBLB.o mixing_probabilities.o viterbi.o -L/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/lib -Wl,-rpath,/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/lib -ltbb -ltbbmalloc -F/Library/Frameworks/R.framework/.. -framework R -Wl,-framework -Wl,CoreFoundation
+installing to /Users/macadmin/Library/CloudStorage/GoogleDrive-brunodosantos@gmail.com/My Drive/overcoverage2/overcoverage2/overcoverage2.Rcheck/00LOCK-overcoverage2/00new/overcoverage2/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (overcoverage2)

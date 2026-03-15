@@ -1,0 +1,2 @@
+PKG_CXXFLAGS = 
+PKG_LIBS = -L/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/lib -Wl,-rpath,/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library/RcppParallel/lib -ltbb -ltbbmalloc
