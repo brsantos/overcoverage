@@ -9,6 +9,11 @@ on:
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
+    env:
+      R_PROFILE_USER: /dev/null
+      R_PROFILE_SITE: /dev/null
+      R_ENVIRON_USER: /dev/null
+      R_ENVIRON_SITE: /dev/null
 
     strategy:
       fail-fast: false
