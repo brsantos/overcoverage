@@ -16,6 +16,7 @@ Description: Implements a capture-recapture hidden Markov model framework for
     uncertainty quantification via the Bag of Little Bootstraps, with support
     for covariates and unobserved heterogeneity to study overcoverage in
     population registers.
+URL: https://brsantos.github.io/overcoverage2
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
