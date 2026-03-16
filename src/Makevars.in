@@ -1,3 +1,2 @@
 PKG_CXXFLAGS = @RCPP_PARALLEL_CXXFLAGS@
-PKG_LIBS += $(shell ${R_HOME}/bin/Rscript -e "RcppParallel::RcppParallelLibs()")
-PKG_LIBS += @RCPP_PARALLEL_LIBS@
+PKG_LIBS = @RCPP_PARALLEL_LIBS@
