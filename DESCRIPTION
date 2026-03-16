@@ -17,6 +17,7 @@ Description: Implements a capture-recapture hidden Markov model framework for
     for covariates and unobserved heterogeneity to study overcoverage in
     population registers.
 URL: https://brsantos.github.io/overcoverage2
+SystemRequirements: TBB (Threading Building Blocks)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
