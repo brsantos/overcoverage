@@ -1,4 +1,5 @@
 importFrom(Rcpp, evalCpp)
+importFrom(RcppParallel, RcppParallelLibs)
 useDynLib(overcoverage2, .registration = TRUE)
 export(model_BLB)
 export(model_nonBLB)
