@@ -4,7 +4,7 @@ R_SCRIPT="${R_HOME}/bin/Rscript"
 
 RCPP_PARALLEL_CXXFLAGS=$("${R_SCRIPT}" -e "cat(RcppParallel::CxxFlags())" 2>/dev/null)
 
-RCPP_PARALLEL_LIBS=$("${R_SCRIPT}" -e "cat(RcppParallel::LdFlags())" 2>/dev/null)
+RCPP_PARALLEL_LIBS=$("${R_SCRIPT}" -e "cat(RcppParallel::RcppParallelLibs())" 2>/dev/null)
 if [ -z "${RCPP_PARALLEL_LIBS}" ]; then
   TBB_LIB=$("${R_SCRIPT}" -e "cat(RcppParallel:::tbbLibraryPath())" 2>/dev/null)
   if [ -n "${TBB_LIB}" ]; then
