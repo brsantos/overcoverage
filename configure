@@ -14,6 +14,15 @@ if [ -z "${RCPP_PARALLEL_LIBS}" ]; then
   fi
 fi
 
+if ! echo "${RCPP_PARALLEL_LIBS}" | grep -q "RcppParallel"; then
+  RCPP_PARALLEL_LIBDIR=$("${R_SCRIPT}" -e "cat(system.file('lib', package='RcppParallel'))" 2>/dev/null)
+  if [ -n "${RCPP_PARALLEL_LIBDIR}" ]; then
+    RCPP_PARALLEL_LIBS="-L${RCPP_PARALLEL_LIBDIR} -lRcppParallel ${RCPP_PARALLEL_LIBS}"
+  else
+    RCPP_PARALLEL_LIBS="-lRcppParallel ${RCPP_PARALLEL_LIBS}"
+  fi
+fi
+
 sed -e "s|@RCPP_PARALLEL_CXXFLAGS@|${RCPP_PARALLEL_CXXFLAGS}|" \
     -e "s|@RCPP_PARALLEL_LIBS@|${RCPP_PARALLEL_LIBS}|" \
     src/Makevars.in > src/Makevars
