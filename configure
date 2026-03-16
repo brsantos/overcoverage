@@ -4,22 +4,18 @@ R_SCRIPT="${R_HOME}/bin/Rscript"
 
 RCPP_PARALLEL_CXXFLAGS=$("${R_SCRIPT}" -e "cat(RcppParallel::CxxFlags())" 2>/dev/null)
 
-RCPP_PARALLEL_LIBS=$("${R_SCRIPT}" -e "cat(RcppParallel::RcppParallelLibs())" 2>/dev/null)
-if [ -z "${RCPP_PARALLEL_LIBS}" ]; then
-  TBB_LIB=$("${R_SCRIPT}" -e "cat(RcppParallel:::tbbLibraryPath())" 2>/dev/null)
-  if [ -n "${TBB_LIB}" ]; then
-    RCPP_PARALLEL_LIBS="-L${TBB_LIB} -Wl,-rpath,${TBB_LIB} -ltbb -ltbbmalloc"
-  else
-    RCPP_PARALLEL_LIBS="-ltbb -ltbbmalloc"
-  fi
+RCPP_PARALLEL_LIBDIR=$("${R_SCRIPT}" -e "cat(system.file('lib', package='RcppParallel'))" 2>/dev/null)
+RCPP_PARALLEL_TBB_LIBDIR=$("${R_SCRIPT}" -e "cat(RcppParallel:::tbbLibraryPath())" 2>/dev/null)
+
+RCPP_PARALLEL_LIBS=""
+if [ -n "${RCPP_PARALLEL_LIBDIR}" ]; then
+  RCPP_PARALLEL_LIBS="${RCPP_PARALLEL_LIBS} -L${RCPP_PARALLEL_LIBDIR} -lRcppParallel"
 fi
 
-RCPP_PARALLEL_LIBDIR=$("${R_SCRIPT}" -e "cat(system.file('lib', package='RcppParallel'))" 2>/dev/null)
-if [ -n "${RCPP_PARALLEL_LIBDIR}" ]; then
-  case "${RCPP_PARALLEL_LIBS}" in
-    *"-L${RCPP_PARALLEL_LIBDIR}"*) ;;
-    *) RCPP_PARALLEL_LIBS="-L${RCPP_PARALLEL_LIBDIR} ${RCPP_PARALLEL_LIBS}" ;;
-  esac
+if [ -n "${RCPP_PARALLEL_TBB_LIBDIR}" ]; then
+  RCPP_PARALLEL_LIBS="${RCPP_PARALLEL_LIBS} -L${RCPP_PARALLEL_TBB_LIBDIR} -Wl,-rpath,${RCPP_PARALLEL_TBB_LIBDIR} -ltbb -ltbbmalloc"
+else
+  RCPP_PARALLEL_LIBS="${RCPP_PARALLEL_LIBS} -ltbb -ltbbmalloc"
 fi
 
 sed -e "s|@RCPP_PARALLEL_CXXFLAGS@|${RCPP_PARALLEL_CXXFLAGS}|" \
