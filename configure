@@ -9,7 +9,11 @@ RCPP_PARALLEL_TBB_LIBDIR=$("${R_SCRIPT}" -e "cat(RcppParallel:::tbbLibraryPath()
 
 RCPP_PARALLEL_LIBS=""
 if [ -n "${RCPP_PARALLEL_LIBDIR}" ]; then
-  RCPP_PARALLEL_LIBS="${RCPP_PARALLEL_LIBS} -L${RCPP_PARALLEL_LIBDIR} -lRcppParallel"
+  if [ -f "${RCPP_PARALLEL_LIBDIR}/libRcppParallel.so" ]; then
+    RCPP_PARALLEL_LIBS="${RCPP_PARALLEL_LIBS} -L${RCPP_PARALLEL_LIBDIR} -lRcppParallel"
+  elif [ -f "${RCPP_PARALLEL_LIBDIR}/libRcppParallel.a" ]; then
+    RCPP_PARALLEL_LIBS="${RCPP_PARALLEL_LIBS} -L${RCPP_PARALLEL_LIBDIR} -lRcppParallel"
+  fi
 fi
 
 if [ -n "${RCPP_PARALLEL_TBB_LIBDIR}" ]; then
