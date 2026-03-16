@@ -33,6 +33,9 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
+      - name: Install RcppParallel system libs
+        run: Rscript -e 'install.packages("RcppParallel", type = "source")'
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
