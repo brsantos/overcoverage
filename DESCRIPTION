@@ -28,3 +28,4 @@ Suggests:
     pkgdown,
     rmarkdown
 VignetteBuilder: knitr
+RoxygenNote: 7.3.1
