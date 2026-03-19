@@ -17,3 +17,7 @@ reference:
     contents:
       - compute_mixing_weights
       - compute_viterbi_paths
+  - title: Data prep
+    contents:
+      - oc2_check_register_data
+      - oc2_prepare_register_data
