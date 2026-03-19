@@ -1,6 +1,8 @@
 # overcoverage2
 
 Capture-Recapture Hidden Markov Models for register-based population inference.
+The package includes reusable checks to detect inconsistencies in register
+data before modeling.
 
 ## Installation
 

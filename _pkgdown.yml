@@ -5,7 +5,7 @@ template:
 
 home:
   title: overcoverage2
-  description: Capture-Recapture Hidden Markov Models for register-based population inference.
+  description: Capture-Recapture Hidden Markov Models for register-based population inference. The package can check for inconsistencies in register data before modeling.
   strip_header: true
 
 reference:

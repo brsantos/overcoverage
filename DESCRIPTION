@@ -24,4 +24,7 @@ LazyData: true
 Imports: Rcpp (>= 1.0.14), RcppParallel, stats
 LinkingTo: Rcpp, RcppArmadillo, RcppParallel
 Suggests:
-    pkgdown
+    knitr,
+    pkgdown,
+    rmarkdown
+VignetteBuilder: knitr
