@@ -1,3 +1,25 @@
+#' Check Register Data Consistency
+#'
+#' Apply a set of consistency checks to person-year register data and return
+#' the cleaned data alongside the IDs removed by each check.
+#'
+#' @param data A data.frame in long (person-year) format.
+#' @param id_col Column name for individual identifiers.
+#' @param year_col Column name for calendar year.
+#' @param firstimmig_col Column name for first immigration year.
+#' @param death_col Column name for death indicator (0/1).
+#' @param emig_col Column name for emigration indicator (0/1).
+#' @param immig_col Column name for immigration indicator (0/1).
+#' @param reimmig_col Column name for re-immigration indicator (0/1).
+#' @param year_beginning First year in the study window.
+#' @param final_year Last year in the study window.
+#'
+#' @return A list with components:
+#' \describe{
+#'   \item{data}{Filtered data.frame after removing inconsistent IDs.}
+#'   \item{removed}{Named list of ID vectors removed at each check.}
+#' }
+#' @export
 oc2_check_register_data <- function(
   data,
   id_col = "id",
@@ -195,6 +217,23 @@ oc2_check_register_data <- function(
   list(data = data, removed = removed)
 }
 
+#' Prepare Register Variables for Modeling
+#'
+#' Standardize and clean register indicators (e.g., convert to binary,
+#' replace missing values, and zero-out registers on emigration/death).
+#'
+#' @param data A data.frame in long (person-year) format.
+#' @param register_cols Character vector of register indicator columns.
+#' @param emig_col Column name for emigration indicator (0/1).
+#' @param death_col Column name for death indicator (0/1).
+#' @param binary_rules Optional named list describing binary conversions.
+#'   Each entry should include `source` and optionally `threshold`.
+#' @param na_to_zero Logical; if TRUE, replace NA with 0 in register columns.
+#' @param zero_on_emig Logical; if TRUE, set register columns to 0 on emigration.
+#' @param zero_on_death Logical; if TRUE, set register columns to 0 on death.
+#'
+#' @return A data.frame with cleaned register columns.
+#' @export
 oc2_prepare_register_data <- function(
   data,
   register_cols,
@@ -260,6 +299,26 @@ oc2_prepare_register_data <- function(
   data
 }
 
+#' Build Observation Inputs for model_BLB
+#'
+#' Create observation matrices and combinations for the BLB model from
+#' prepared register data. This helper is intended for internal use.
+#'
+#' @param data A data.frame in long (person-year) format.
+#' @param id_col Column name for individual identifiers.
+#' @param year_col Column name for calendar year.
+#' @param register_cols Character vector of register indicator columns.
+#' @param covariate_cols Character vector of covariate columns to include in
+#'   observation combinations.
+#' @param reimmig_col Column name for re-immigration indicator (0/1).
+#' @param death_col Column name for death indicator (0/1).
+#' @param emig_col Column name for emigration indicator (0/1).
+#' @param year_beginning First year in the study window.
+#' @param final_year Last year in the study window.
+#' @param combins Optional matrix of combination indices used for unobserved years.
+#'
+#' @return A list with elements `y_matrix`, `X`, and `num_combos`.
+#' @keywords internal
 oc2_prepare_model_BLB_inputs <- function(
   data,
   id_col = "id",
