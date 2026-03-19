@@ -1,22 +1,30 @@
-# Check and clean register data for model preparation
+# Check Register Data Consistency
 
-Applies a set of consistency checks to register data and removes
-individuals that violate the assumptions used in model preparation.
+Apply a set of consistency checks to person-year register data and
+return the cleaned data alongside the IDs removed by each check.
 
 ## Usage
 
 ``` r
-oc2_check_register_data(data, id_col = "id", year_col = "year",
-  firstimmig_col = "firstimmig", death_col = "death", emig_col = "emig",
-  immig_col = "immig", reimmig_col = "reimmig", year_beginning,
-  final_year)
+oc2_check_register_data(
+  data,
+  id_col = "id",
+  year_col = "year",
+  firstimmig_col = "firstimmig",
+  death_col = "death",
+  emig_col = "emig",
+  immig_col = "immig",
+  reimmig_col = "reimmig",
+  year_beginning,
+  final_year
+)
 ```
 
 ## Arguments
 
 - data:
 
-  A data.frame in long format with one row per person-year.
+  A data.frame in long (person-year) format.
 
 - id_col:
 
@@ -32,29 +40,36 @@ oc2_check_register_data(data, id_col = "id", year_col = "year",
 
 - death_col:
 
-  Column name for death indicator.
+  Column name for death indicator (0/1).
 
 - emig_col:
 
-  Column name for emigration indicator.
+  Column name for emigration indicator (0/1).
 
 - immig_col:
 
-  Column name for immigration indicator.
+  Column name for immigration indicator (0/1).
 
 - reimmig_col:
 
-  Column name for re-immigration indicator.
+  Column name for re-immigration indicator (0/1).
 
 - year_beginning:
 
-  First year of the study period.
+  First year in the study window.
 
 - final_year:
 
-  Last year of the study period.
+  Last year in the study window.
 
 ## Value
 
-A list with `data` (cleaned data.frame) and `removed` (IDs removed by
-each check).
+A list with components:
+
+- data:
+
+  Filtered data.frame after removing inconsistent IDs.
+
+- removed:
+
+  Named list of ID vectors removed at each check.

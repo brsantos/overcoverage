@@ -1,50 +1,58 @@
-# Prepare register variables for model input
+# Prepare Register Variables for Modeling
 
-Converts numeric registers to binary (optional), replaces missing
-values, and zeroes registers in years with emigration or death.
+Standardize and clean register indicators (e.g., convert to binary,
+replace missing values, and zero-out registers on emigration/death).
 
 ## Usage
 
 ``` r
-oc2_prepare_register_data(data, register_cols, emig_col = "emig",
-  death_col = "death", binary_rules = NULL, na_to_zero = TRUE,
-  zero_on_emig = TRUE, zero_on_death = TRUE)
+oc2_prepare_register_data(
+  data,
+  register_cols,
+  emig_col = "emig",
+  death_col = "death",
+  binary_rules = NULL,
+  na_to_zero = TRUE,
+  zero_on_emig = TRUE,
+  zero_on_death = TRUE
+)
 ```
 
 ## Arguments
 
 - data:
 
-  A data.frame in long format with one row per person-year.
+  A data.frame in long (person-year) format.
 
 - register_cols:
 
-  Character vector of register column names.
+  Character vector of register indicator columns.
 
 - emig_col:
 
-  Column name for emigration indicator.
+  Column name for emigration indicator (0/1).
 
 - death_col:
 
-  Column name for death indicator.
+  Column name for death indicator (0/1).
 
 - binary_rules:
 
-  Optional named list defining binary conversion rules.
+  Optional named list describing binary conversions. Each entry should
+  include \`source\` and optionally \`threshold\`.
 
 - na_to_zero:
 
-  Logical; replace NA in registers with 0.
+  Logical; if TRUE, replace NA with 0 in register columns.
 
 - zero_on_emig:
 
-  Logical; zero out registers when emig == 1.
+  Logical; if TRUE, set register columns to 0 on emigration.
 
 - zero_on_death:
 
-  Logical; zero out registers when death == 1.
+  Logical; if TRUE, set register columns to 0 on death.
 
 ## Value
 
-A data.frame with updated register columns.
+A data.frame with cleaned register columns.

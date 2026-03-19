@@ -44,9 +44,19 @@ accepts inputs directly and optionally saves the results.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_mixing_weights</span><span class="op">(</span><span class="va">y</span>, <span class="va">covariates</span>, <span class="va">age</span>, <span class="va">tin</span>, <span class="va">combins</span>, <span class="va">estimates</span>, L <span class="op">=</span> <span class="fl">8</span>,</span>
-<span>  init <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, threads <span class="op">=</span> <span class="fl">8</span>, cpp_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_mixing_weights</span><span class="op">(</span></span>
+<span>  <span class="va">y</span>,</span>
+<span>  <span class="va">covariates</span>,</span>
+<span>  <span class="va">age</span>,</span>
+<span>  <span class="va">tin</span>,</span>
+<span>  <span class="va">combins</span>,</span>
+<span>  <span class="va">estimates</span>,</span>
+<span>  L <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  init <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  threads <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  cpp_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  save_path <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">

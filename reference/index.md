@@ -17,6 +17,6 @@
 ## Data prep
 
 - [`oc2_check_register_data()`](https://brsantos.github.io/overcoverage2/reference/oc2_check_register_data.md)
-  : Check and clean register data for model preparation
+  : Check Register Data Consistency
 - [`oc2_prepare_register_data()`](https://brsantos.github.io/overcoverage2/reference/oc2_prepare_register_data.md)
-  : Prepare register variables for model input
+  : Prepare Register Variables for Modeling

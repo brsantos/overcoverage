@@ -7,9 +7,19 @@ accepts inputs directly and optionally saves the results.
 ## Usage
 
 ``` r
-compute_mixing_weights(y, covariates, age, tin, combins, estimates, L = 8,
-  init = c(1, 0, 0, 0, 0, 0, 0, 0), threads = 8, cpp_file = NULL,
-  save_path = NULL)
+compute_mixing_weights(
+  y,
+  covariates,
+  age,
+  tin,
+  combins,
+  estimates,
+  L = 8,
+  init = c(1, 0, 0, 0, 0, 0, 0, 0),
+  threads = 8,
+  cpp_file = NULL,
+  save_path = NULL
+)
 ```
 
 ## Arguments

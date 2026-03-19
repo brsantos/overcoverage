@@ -7,11 +7,24 @@ must be provided directly.
 ## Usage
 
 ``` r
-model_BLB(part = 20, y = NULL, covariates = NULL, age = NULL, tin = NULL,
-  combins = NULL, init_params = NULL, init = c(1, 0, 0, 0, 0, 0,
-  0, 0), N = NULL, L = 8, num_bootstraps = 100, boot_start = 1,
-  threads = 8, progress_path = NULL, results_path = NULL,
-  cpp_file = NULL)
+model_BLB(
+  part = 20,
+  y = NULL,
+  covariates = NULL,
+  age = NULL,
+  tin = NULL,
+  combins = NULL,
+  init_params = NULL,
+  init = c(1, 0, 0, 0, 0, 0, 0, 0),
+  N = NULL,
+  L = 8,
+  num_bootstraps = 100,
+  boot_start = 1,
+  threads = 8,
+  progress_path = NULL,
+  results_path = NULL,
+  cpp_file = NULL
+)
 ```
 
 ## Arguments
@@ -87,5 +100,5 @@ A list with elements `estimates`, `means`, `sds`, and `results`.
 ## Examples
 
 ``` r
-# See tests/model_BLB_simulated.R for a simulated run
+# See model_BLB_simulated_example() for a simulated run
 ```

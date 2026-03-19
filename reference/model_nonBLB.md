@@ -7,10 +7,23 @@ provided directly; any file reads should happen outside this wrapper.
 ## Usage
 
 ``` r
-model_nonBLB(y, covariates, age, tin, combins, L = 8, init = c(1,
-  0, 0, 0, 0, 0, 0, 0), sample_n = NULL, seed = NULL,
-  init_params = NULL, num_betas = 78, num_deltas = 112,
-  threads = 8, cpp_file = NULL, save_path = NULL)
+model_nonBLB(
+  y,
+  covariates,
+  age,
+  tin,
+  combins,
+  L = 8,
+  init = c(1, 0, 0, 0, 0, 0, 0, 0),
+  sample_n = NULL,
+  seed = NULL,
+  init_params = NULL,
+  num_betas = 78,
+  num_deltas = 112,
+  threads = 8,
+  cpp_file = NULL,
+  save_path = NULL
+)
 ```
 
 ## Arguments

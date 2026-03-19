@@ -7,9 +7,20 @@ wrapper.
 ## Usage
 
 ``` r
-compute_viterbi_paths(y, covariates, age, tin, combins, estimates,
-  mixing_weights, L = 8, init = c(1, 0, 0, 0, 0, 0, 0, 0),
-  threads = 8, cpp_file = NULL, save_path = NULL)
+compute_viterbi_paths(
+  y,
+  covariates,
+  age,
+  tin,
+  combins,
+  estimates,
+  mixing_weights,
+  L = 8,
+  init = c(1, 0, 0, 0, 0, 0, 0, 0),
+  threads = 8,
+  cpp_file = NULL,
+  save_path = NULL
+)
 ```
 
 ## Arguments
