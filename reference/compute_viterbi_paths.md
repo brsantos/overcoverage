@@ -35,9 +35,7 @@ compute_viterbi_paths(
 
 - age:
 
-  Age indicator array (individuals x 2 x time). If a 3-level array is
-  supplied, the third level is used; if a 2-level array is supplied, the
-  third level is treated as all zeros.
+  Age indicator array (individuals x 2 x time).
 
 - tin:
 

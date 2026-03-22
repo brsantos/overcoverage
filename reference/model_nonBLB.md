@@ -19,7 +19,7 @@ model_nonBLB(
   seed = NULL,
   init_params = NULL,
   num_betas = 78,
-  num_deltas = 112,
+  num_deltas = 105,
   threads = 8,
   cpp_file = NULL,
   save_path = NULL
@@ -38,9 +38,7 @@ model_nonBLB(
 
 - age:
 
-  Age indicator array (individuals x 2 x time). If a 3-level array is
-  supplied, the third level is used; if a 2-level array is supplied, the
-  third level is treated as all zeros.
+  Age indicator array (individuals x 2 x time).
 
 - tin:
 
@@ -76,7 +74,7 @@ model_nonBLB(
 
 - num_deltas:
 
-  Number of delta parameters (default 112).
+  Number of delta parameters (default 105).
 
 - threads:
 
