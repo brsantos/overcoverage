@@ -33,35 +33,21 @@ L <- 3
 
 y <- matrix(sample(1:10, N * T, replace = TRUE), N, T)
 covariates <- matrix(rnorm(N * 11), N, 11)
-age2 <- matrix(rbinom(N * T, 1, .5), N, T)
-age3 <- matrix(rbinom(N * T, 1, .5), N, T)
-age4 <- matrix(rbinom(N * T, 1, .5), N, T)
-tin2 <- matrix(rbinom(N * T, 1, .5), N, T)
-tin3 <- matrix(rbinom(N * T, 1, .5), N, T)
+age <- array(rbinom(N * 2 * T, 1, .5), dim = c(N, 2, T))
+tin <- array(rbinom(N * 2 * T, 1, .5), dim = c(N, 2, T))
 combins <- matrix(sample(1:(64 * 2^(L - 2)), N * T, replace = TRUE), N, T)
-first <- rep(1, N)
-initial <- c(1, 0, 0, 0, 0, 0, 0, 0)
-
-X <- matrix(rnorm((64 * 2^(L - 2)) * 77), 64 * 2^(L - 2), 77)
-
-params <- rnorm(200)
+init_params <- rnorm(191)
 
 fit <- model_BLB(
   y = y,
   covariates = covariates,
-  age2 = age2,
-  age3 = age3,
-  age4 = age4,
-  tin2 = tin2,
-  tin3 = tin3,
-  X = X,
-  initial = initial,
-  first = first,
+  age = age,
+  tin = tin,
   L = L,
   combins = combins,
-  params = params,
-  n = N,
-  proportions = rep(1 / N, N)
+  init_params = init_params,
+  num_bootstraps = 2,
+  threads = 1
 )
 
 fit

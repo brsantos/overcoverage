@@ -7,7 +7,9 @@
 #' @param part Partition index used for file naming when reading or saving.
 #' @param y Observation matrix (individuals x time).
 #' @param covariates Covariate matrix (individuals x 11).
-#' @param age Age indicator array (individuals x 3 x time).
+#' @param age Age indicator array (individuals x 2 x time). If a 3-level array
+#'   is supplied, the third level is used; if a 2-level array is supplied, the
+#'   third level is treated as all zeros.
 #' @param tin Time-in indicator array (individuals x 2 x time).
 #' @param combins Register combination matrix.
 #' @param init_params Initial parameter vector.
@@ -74,9 +76,20 @@ model_BLB <- function(
   }
 
   covariates <- as.matrix(covariates)
-  age2 <- age[, 1, ]
-  age3 <- age[, 2, ]
-  age4 <- age[, 3, ]
+  if (length(dim(age)) != 3) {
+    stop("age must be a 3D array (individuals x age levels x time).")
+  }
+  if (dim(age)[2] == 2) {
+    age2 <- age[, 1, ]
+    age3 <- age[, 2, ]
+    age4 <- matrix(0, nrow = dim(age)[1], ncol = dim(age)[3])
+  } else if (dim(age)[2] == 3) {
+    age2 <- age[, 1, ]
+    age3 <- age[, 2, ]
+    age4 <- age[, 3, ]
+  } else {
+    stop("age must have 2 or 3 levels.")
+  }
   tin2 <- tin[, 1, ]
   tin3 <- tin[, 2, ]
   age2 <- apply(age2, 2, as.numeric)

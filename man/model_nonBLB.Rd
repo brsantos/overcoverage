@@ -27,7 +27,9 @@ model_nonBLB(
 
 \item{covariates}{Covariate matrix (individuals x 11).}
 
-\item{age}{Age indicator array (individuals x 3 x time).}
+\item{age}{Age indicator array (individuals x 2 x time). If a 3-level array
+is supplied, the third level is used; if a 2-level array is supplied, the
+third level is treated as all zeros.}
 
 \item{tin}{Time-in indicator array (individuals x 2 x time).}
 

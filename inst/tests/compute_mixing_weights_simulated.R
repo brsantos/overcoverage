@@ -10,7 +10,7 @@ compute_mixing_weights_simulated_example <- function(
 
   y <- matrix(sample(1:10, N * T, replace = TRUE), N, T)
   covariates <- matrix(rnorm(N * 11), N, 11)
-  age <- array(rbinom(N * 3 * T, 1, 0.5), dim = c(N, 3, T))
+  age <- array(rbinom(N * 2 * T, 1, 0.5), dim = c(N, 2, T))
   tin <- array(rbinom(N * 2 * T, 1, 0.5), dim = c(N, 2, T))
   combins <- matrix(sample(1:4, N * T, replace = TRUE), N, T)
 

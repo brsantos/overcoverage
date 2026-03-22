@@ -41,7 +41,7 @@ covariates <- matrix(rnorm(N*11), N, 11)
 
 age2 <- matrix(rbinom(N*T,1,.5), N, T)
 age3 <- matrix(rbinom(N*T,1,.5), N, T)
-age4 <- matrix(rbinom(N*T,1,.5), N, T)
+age4 <- matrix(0, N, T)
 
 tin2 <- matrix(rbinom(N*T,1,.5), N, T)
 tin3 <- matrix(rbinom(N*T,1,.5), N, T)
