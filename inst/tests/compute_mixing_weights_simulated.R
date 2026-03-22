@@ -15,7 +15,7 @@ compute_mixing_weights_simulated_example <- function(
   combins <- matrix(sample(1:4, N * T, replace = TRUE), N, T)
 
   # Simulated parameter estimates (bootstraps x params)
-  estimates <- matrix(rnorm(2 * 191), nrow = 2, ncol = 191)
+  estimates <- matrix(rnorm(2 * 184), nrow = 2, ncol = 184)
 
   if (!run) {
     return(list(

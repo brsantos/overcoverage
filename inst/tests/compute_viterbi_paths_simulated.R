@@ -14,7 +14,7 @@ compute_viterbi_paths_simulated_example <- function(
   tin <- array(rbinom(N * 2 * T, 1, 0.5), dim = c(N, 2, T))
   combins <- matrix(sample(1:4, N * T, replace = TRUE), N, T)
 
-  estimates <- matrix(rnorm(2 * 191), nrow = 2, ncol = 191)
+  estimates <- matrix(rnorm(2 * 184), nrow = 2, ncol = 184)
   mixing_weights <- array(runif(N * 2 * 2), dim = c(N, 2, 2))
 
   if (!run) {

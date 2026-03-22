@@ -36,7 +36,7 @@ covariates <- matrix(rnorm(N * 11), N, 11)
 age <- array(rbinom(N * 2 * T, 1, .5), dim = c(N, 2, T))
 tin <- array(rbinom(N * 2 * T, 1, .5), dim = c(N, 2, T))
 combins <- matrix(sample(1:(64 * 2^(L - 2)), N * T, replace = TRUE), N, T)
-init_params <- rnorm(191)
+init_params <- rnorm(184)
 
 fit <- model_BLB(
   y = y,

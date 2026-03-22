@@ -13,27 +13,27 @@ loglikelihood_fast_cpp <- function(y, first, combins, s, e, i, lambda, epsilon1,
     .Call(`_overcoverage2_loglikelihood_fast_cpp`, y, first, combins, s, e, i, lambda, epsilon1, epsilon2, epsilon3, mixing_prop, probs1, probs2, counts, L)
 }
 
-loglikelihood_BLB_parallel <- function(y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, n, proportions, params) {
-    .Call(`_overcoverage2_loglikelihood_BLB_parallel`, y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, n, proportions, params)
+loglikelihood_BLB_parallel <- function(y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, n, proportions, params) {
+    .Call(`_overcoverage2_loglikelihood_BLB_parallel`, y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, n, proportions, params)
 }
 
-loglikelihood_BLB_parallel_legacy <- function(y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, n, proportions, params) {
-    .Call(`_overcoverage2_loglikelihood_BLB_parallel_legacy`, y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, n, proportions, params)
+loglikelihood_BLB_parallel_legacy <- function(y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, n, proportions, params) {
+    .Call(`_overcoverage2_loglikelihood_BLB_parallel_legacy`, y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, n, proportions, params)
 }
 
-loglikelihood_nonBLB_parallel <- function(y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, params) {
-    .Call(`_overcoverage2_loglikelihood_nonBLB_parallel`, y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, params)
+loglikelihood_nonBLB_parallel <- function(y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, params) {
+    .Call(`_overcoverage2_loglikelihood_nonBLB_parallel`, y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, params)
 }
 
-loglikelihood_nonBLB_parallel_legacy <- function(y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, params) {
-    .Call(`_overcoverage2_loglikelihood_nonBLB_parallel_legacy`, y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, params)
+loglikelihood_nonBLB_parallel_legacy <- function(y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, params) {
+    .Call(`_overcoverage2_loglikelihood_nonBLB_parallel_legacy`, y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, params)
 }
 
-mixing_probs <- function(y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, params) {
-    .Call(`_overcoverage2_mixing_probs`, y, covariates, age2, age3, age4, tin2, tin3, X, initial, first, L, combins, params)
+mixing_probs <- function(y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, params) {
+    .Call(`_overcoverage2_mixing_probs`, y, covariates, age2, age3, tin2, tin3, X, initial, first, L, combins, params)
 }
 
-viterbi <- function(y, covariates, age2, age3, age4, tin2, tin3, combins, X, initial, first, L, params, mixing) {
-    .Call(`_overcoverage2_viterbi`, y, covariates, age2, age3, age4, tin2, tin3, combins, X, initial, first, L, params, mixing)
+viterbi <- function(y, covariates, age2, age3, tin2, tin3, combins, X, initial, first, L, params, mixing) {
+    .Call(`_overcoverage2_viterbi`, y, covariates, age2, age3, tin2, tin3, combins, X, initial, first, L, params, mixing)
 }
 

@@ -448,7 +448,6 @@ double loglikelihood_BLB_parallel(const arma::mat& y,
                               const arma::mat& covariates,
                               const arma::mat& age2,
                               const arma::mat& age3,
-                              const arma::mat& age4,
                               const arma::mat& tin2,
                               const arma::mat& tin3,
                               const arma::mat& X,
@@ -493,46 +492,39 @@ double loglikelihood_BLB_parallel(const arma::mat& y,
     for (int t = (first(j)-1); t < T; ++t) {
       s(j,t) = inv_logit(dot(covariates.row(j), Delta1) +
         (age2(j,t) * params(156)) +
-        (age3(j,t) * params(157)) + 
-        (age4(j,t) * params(158)) +
-        (tin2(j,t) * params(159)) +
-        (tin3(j,t) * params(160)));
+        (age3(j,t) * params(157)) +
+        (tin2(j,t) * params(158)) +
+        (tin3(j,t) * params(159)));
       e(j,t) = inv_logit(dot(covariates.row(j), Delta2) +
-        (age2(j,t) * params(161)) +
-        (age3(j,t) * params(162)) + 
-        (age4(j,t) * params(163)) +
-        (tin2(j,t) * params(164)) + 
-        (tin3(j,t) * params(165)));
+        (age2(j,t) * params(160)) +
+        (age3(j,t) * params(161)) +
+        (tin2(j,t) * params(162)) +
+        (tin3(j,t) * params(163)));
       i(j,t) = inv_logit(dot(covariates.row(j), Delta3) +
-        (age2(j,t) * params(166)) +
-        (age3(j,t) * params(167)) + 
-        (age4(j,t) * params(168)) +
-        (tin2(j,t) * params(169)) + 
-        (tin3(j,t) * params(170)));
+        (age2(j,t) * params(164)) +
+        (age3(j,t) * params(165)) +
+        (tin2(j,t) * params(166)) +
+        (tin3(j,t) * params(167)));
       lambda(j,t) = inv_logit(dot(covariates.row(j), Delta4) +
-        (age2(j,t) * params(171)) +
-        (age3(j,t) * params(172)) + 
-        (age4(j,t) * params(173)) +
-        (tin2(j,t) * params(174)) + 
-        (tin3(j,t) * params(175)));
+        (age2(j,t) * params(168)) +
+        (age3(j,t) * params(169)) +
+        (tin2(j,t) * params(170)) +
+        (tin3(j,t) * params(171)));
       epsilon1(j,t) = inv_logit(dot(covariates.row(j), Epsilon1) +
-        (age2(j,t) * params(176)) +
-        (age3(j,t) * params(177)) + 
-        (age4(j,t) * params(178)) +
-        (tin2(j,t) * params(179)) + 
-        (tin3(j,t) * params(180)));
+        (age2(j,t) * params(172)) +
+        (age3(j,t) * params(173)) +
+        (tin2(j,t) * params(174)) +
+        (tin3(j,t) * params(175)));
       epsilon2(j,t) = inv_logit(dot(covariates.row(j), Epsilon2) +
-        (age2(j,t) * params(181)) +
-        (age3(j,t) * params(182)) + 
-        (age4(j,t) * params(183)) +
-        (tin2(j,t) * params(184)) + 
-        (tin3(j,t) * params(185)));
+        (age2(j,t) * params(176)) +
+        (age3(j,t) * params(177)) +
+        (tin2(j,t) * params(178)) +
+        (tin3(j,t) * params(179)));
       epsilon3(j,t) = inv_logit(dot(covariates.row(j), Epsilon3) +
-        (age2(j,t) * params(186)) +
-        (age3(j,t) * params(187)) + 
-        (age4(j,t) * params(188)) +
-        (tin2(j,t) * params(189)) + 
-        (tin3(j,t) * params(190)));
+        (age2(j,t) * params(180)) +
+        (age3(j,t) * params(181)) +
+        (tin2(j,t) * params(182)) +
+        (tin3(j,t) * params(183)));
     }
   } 
   
@@ -590,7 +582,6 @@ double loglikelihood_BLB_parallel_legacy(const arma::mat& y,
                                      const arma::mat& covariates,
                                      const arma::mat& age2,
                                      const arma::mat& age3,
-                                     const arma::mat& age4,
                                      const arma::mat& tin2,
                                      const arma::mat& tin3,
                                      const arma::mat& X,
@@ -636,45 +627,38 @@ double loglikelihood_BLB_parallel_legacy(const arma::mat& y,
       s(j,t) = inv_logit(dot(covariates.row(j), Delta1) +
         (age2(j,t) * params(156)) +
         (age3(j,t) * params(157)) +
-        (age4(j,t) * params(158)) +
-        (tin2(j,t) * params(159)) +
-        (tin3(j,t) * params(160)));
+        (tin2(j,t) * params(158)) +
+        (tin3(j,t) * params(159)));
       e(j,t) = inv_logit(dot(covariates.row(j), Delta2) +
-        (age2(j,t) * params(161)) +
-        (age3(j,t) * params(162)) +
-        (age4(j,t) * params(163)) +
-        (tin2(j,t) * params(164)) +
-        (tin3(j,t) * params(165)));
+        (age2(j,t) * params(160)) +
+        (age3(j,t) * params(161)) +
+        (tin2(j,t) * params(162)) +
+        (tin3(j,t) * params(163)));
       i(j,t) = inv_logit(dot(covariates.row(j), Delta3) +
-        (age2(j,t) * params(166)) +
-        (age3(j,t) * params(167)) +
-        (age4(j,t) * params(168)) +
-        (tin2(j,t) * params(169)) +
-        (tin3(j,t) * params(170)));
+        (age2(j,t) * params(164)) +
+        (age3(j,t) * params(165)) +
+        (tin2(j,t) * params(166)) +
+        (tin3(j,t) * params(167)));
       lambda(j,t) = inv_logit(dot(covariates.row(j), Delta4) +
-        (age2(j,t) * params(171)) +
-        (age3(j,t) * params(172)) +
-        (age4(j,t) * params(173)) +
+        (age2(j,t) * params(168)) +
+        (age3(j,t) * params(169)) +
+        (tin2(j,t) * params(170)) +
+        (tin3(j,t) * params(171)));
+      epsilon1(j,t) = inv_logit(dot(covariates.row(j), Epsilon1) +
+        (age2(j,t) * params(172)) +
+        (age3(j,t) * params(173)) +
         (tin2(j,t) * params(174)) +
         (tin3(j,t) * params(175)));
-      epsilon1(j,t) = inv_logit(dot(covariates.row(j), Epsilon1) +
+      epsilon2(j,t) = inv_logit(dot(covariates.row(j), Epsilon2) +
         (age2(j,t) * params(176)) +
         (age3(j,t) * params(177)) +
-        (age4(j,t) * params(178)) +
-        (tin2(j,t) * params(179)) +
-        (tin3(j,t) * params(180)));
-      epsilon2(j,t) = inv_logit(dot(covariates.row(j), Epsilon2) +
-        (age2(j,t) * params(181)) +
-        (age3(j,t) * params(182)) +
-        (age4(j,t) * params(183)) +
-        (tin2(j,t) * params(184)) +
-        (tin3(j,t) * params(185)));
+        (tin2(j,t) * params(178)) +
+        (tin3(j,t) * params(179)));
       epsilon3(j,t) = inv_logit(dot(covariates.row(j), Epsilon3) +
-        (age2(j,t) * params(186)) +
-        (age3(j,t) * params(187)) +
-        (age4(j,t) * params(188)) +
-        (tin2(j,t) * params(189)) +
-        (tin3(j,t) * params(190)));
+        (age2(j,t) * params(180)) +
+        (age3(j,t) * params(181)) +
+        (tin2(j,t) * params(182)) +
+        (tin3(j,t) * params(183)));
     }
   }
 

@@ -16,7 +16,7 @@ model_nonBLB(
   seed = NULL,
   init_params = NULL,
   num_betas = 78,
-  num_deltas = 112,
+  num_deltas = 105,
   threads = 8,
   cpp_file = NULL,
   save_path = NULL
@@ -27,9 +27,7 @@ model_nonBLB(
 
 \item{covariates}{Covariate matrix (individuals x 11).}
 
-\item{age}{Age indicator array (individuals x 2 x time). If a 3-level array
-is supplied, the third level is used; if a 2-level array is supplied, the
-third level is treated as all zeros.}
+\item{age}{Age indicator array (individuals x 2 x time).}
 
 \item{tin}{Time-in indicator array (individuals x 2 x time).}
 
@@ -47,7 +45,7 @@ third level is treated as all zeros.}
 
 \item{num_betas}{Number of beta parameters (default 78).}
 
-\item{num_deltas}{Number of delta parameters (default 112).}
+\item{num_deltas}{Number of delta parameters (default 105).}
 
 \item{threads}{Number of threads for RcppParallel.}
 
