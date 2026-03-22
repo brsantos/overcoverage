@@ -22,7 +22,10 @@ provided directly; any file reads should happen outside this wrapper."><!-- math
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/overcoverage2.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -48,10 +51,23 @@ provided directly; any file reads should happen outside this wrapper.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">model_nonBLB</span><span class="op">(</span><span class="va">y</span>, <span class="va">covariates</span>, <span class="va">age</span>, <span class="va">tin</span>, <span class="va">combins</span>, L <span class="op">=</span> <span class="fl">8</span>, init <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,</span>
-<span>  <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, sample_n <span class="op">=</span> <span class="cn">NULL</span>, seed <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  init_params <span class="op">=</span> <span class="cn">NULL</span>, num_betas <span class="op">=</span> <span class="fl">78</span>, num_deltas <span class="op">=</span> <span class="fl">112</span>,</span>
-<span>  threads <span class="op">=</span> <span class="fl">8</span>, cpp_file <span class="op">=</span> <span class="cn">NULL</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">model_nonBLB</span><span class="op">(</span></span>
+<span>  <span class="va">y</span>,</span>
+<span>  <span class="va">covariates</span>,</span>
+<span>  <span class="va">age</span>,</span>
+<span>  <span class="va">tin</span>,</span>
+<span>  <span class="va">combins</span>,</span>
+<span>  L <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  init <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  sample_n <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  seed <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  init_params <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  num_betas <span class="op">=</span> <span class="fl">78</span>,</span>
+<span>  num_deltas <span class="op">=</span> <span class="fl">105</span>,</span>
+<span>  threads <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  cpp_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  save_path <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -65,7 +81,7 @@ provided directly; any file reads should happen outside this wrapper.</p>
 
 
 <dt>age</dt>
-<dd><p>Age indicator array (individuals x 3 x time).</p></dd>
+<dd><p>Age indicator array (individuals x 2 x time).</p></dd>
 
 
 <dt>tin</dt>
@@ -101,7 +117,7 @@ provided directly; any file reads should happen outside this wrapper.</p>
 
 
 <dt>num_deltas</dt>
-<dd><p>Number of delta parameters (default 112).</p></dd>
+<dd><p>Number of delta parameters (default 105).</p></dd>
 
 
 <dt>threads</dt>
