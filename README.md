@@ -12,7 +12,7 @@ Install from GitHub:
 
 ```r
 install.packages("remotes")
-remotes::install_github("brsantos/overcoverage2")
+remotes::install_github("brsantos/overcoverage")
 ```
 
 On Linux, you may need TBB for RcppParallel before installation, for example:
