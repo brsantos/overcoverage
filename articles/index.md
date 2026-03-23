@@ -2,4 +2,4 @@
 
 ### All vignettes
 
-- [overcoverage2](https://brsantos.github.io/overcoverage2/articles/overcoverage2.md):
+- [overcoverage](https://brsantos.github.io/overcoverage/articles/overcoverage.md):

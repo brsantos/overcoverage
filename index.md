@@ -1,3 +1,5 @@
+![](reference/figures/overcoverage_small.png)
+
 Capture-Recapture Hidden Markov Models for register-based population
 inference. The package includes reusable checks to detect
 inconsistencies in register data before modeling.
@@ -22,7 +24,7 @@ Below is a minimal example using simulated inputs. Replace these with
 your data and starting values.
 
 ``` r
-library(overcoverage2)
+library(overcoverage)
 
 set.seed(123)
 N <- 200

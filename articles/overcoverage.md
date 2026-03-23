@@ -1,4 +1,4 @@
-# overcoverage2
+# overcoverage
 
 ## Register data preparation
 
@@ -10,7 +10,7 @@ and standardize register variables before creating the model inputs.
 ### Consistency checks
 
 ``` r
-library(overcoverage2)
+library(overcoverage)
 
 # data_long should be a person-year data.frame
 # with columns like id, year, firstimmig, death, emig, immig, reimmig, ...

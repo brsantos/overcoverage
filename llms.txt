@@ -1,3 +1,5 @@
+![](reference/figures/overcoverage_small.png)
+
 Capture-Recapture Hidden Markov Models for register-based population
 inference. The package includes reusable checks to detect
 inconsistencies in register data before modeling.
@@ -22,7 +24,7 @@ Below is a minimal example using simulated inputs. Replace these with
 your data and starting values.
 
 ``` r
-library(overcoverage2)
+library(overcoverage)
 
 set.seed(123)
 N <- 200
@@ -55,27 +57,27 @@ fit
 
 ## Models
 
-- [`model_BLB()`](https://brsantos.github.io/overcoverage2/reference/model_BLB.md)
+- [`model_BLB()`](https://brsantos.github.io/overcoverage/reference/model_BLB.md)
   : Run the BLB model
-- [`model_nonBLB()`](https://brsantos.github.io/overcoverage2/reference/model_nonBLB.md)
+- [`model_nonBLB()`](https://brsantos.github.io/overcoverage/reference/model_nonBLB.md)
   : Fit the non-BLB model
 
 ## Helpers
 
-- [`compute_mixing_weights()`](https://brsantos.github.io/overcoverage2/reference/compute_mixing_weights.md)
+- [`compute_mixing_weights()`](https://brsantos.github.io/overcoverage/reference/compute_mixing_weights.md)
   : Compute mixing probabilities for a partition
-- [`compute_viterbi_paths()`](https://brsantos.github.io/overcoverage2/reference/compute_viterbi_paths.md)
+- [`compute_viterbi_paths()`](https://brsantos.github.io/overcoverage/reference/compute_viterbi_paths.md)
   : Compute Viterbi paths for each individual
 
 ## Data prep
 
-- [`oc2_check_register_data()`](https://brsantos.github.io/overcoverage2/reference/oc2_check_register_data.md)
+- [`oc2_check_register_data()`](https://brsantos.github.io/overcoverage/reference/oc2_check_register_data.md)
   : Check Register Data Consistency
-- [`oc2_prepare_register_data()`](https://brsantos.github.io/overcoverage2/reference/oc2_prepare_register_data.md)
+- [`oc2_prepare_register_data()`](https://brsantos.github.io/overcoverage/reference/oc2_prepare_register_data.md)
   : Prepare Register Variables for Modeling
 
 # Articles
 
 ### All vignettes
 
-- [overcoverage2](https://brsantos.github.io/overcoverage2/articles/overcoverage2.md):
+- [overcoverage](https://brsantos.github.io/overcoverage/articles/overcoverage.md):
