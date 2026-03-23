@@ -1,8 +1,8 @@
 ---
-title: "overcoverage2"
+title: "overcoverage"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{overcoverage2}
+  %\VignetteIndexEntry{overcoverage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -24,7 +24,7 @@ before creating the model inputs.
 ## Consistency checks
 
 ```{r}
-library(overcoverage2)
+library(overcoverage)
 
 # data_long should be a person-year data.frame
 # with columns like id, year, firstimmig, death, emig, immig, reimmig, ...

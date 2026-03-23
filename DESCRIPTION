@@ -1,13 +1,11 @@
-Package: overcoverage2
+Package: overcoverage
 Type: Package
 Title: Capture-Recapture Hidden Markov Models for Register-Based Population Inference
 Version: 0.1.0
 Authors@R: c(
-    person("Lucy", "Brown", role = "aut"),
-    person("Eleni", "Matechou", role = "aut"),
     person("Bruno", "Santos", role = c("aut", "cre"),
            email = "brdsantos@fc.ul.pt"),
-    person("Eleonora", "Mussino", role = "aut")
+    person("Lucy", "Brown", role = "aut")
   )
 Description: Implements a capture-recapture hidden Markov model framework for
     register-based inference of population size and dynamics, allowing false
@@ -16,7 +14,7 @@ Description: Implements a capture-recapture hidden Markov model framework for
     uncertainty quantification via the Bag of Little Bootstraps, with support
     for covariates and unobserved heterogeneity to study overcoverage in
     population registers.
-URL: https://brsantos.github.io/overcoverage2
+URL: https://brsantos.github.io/overcoverage
 SystemRequirements: TBB (Threading Building Blocks)
 License: GPL-3
 Encoding: UTF-8

@@ -1,4 +1,4 @@
-library(overcoverage2)
+library(overcoverage)
 
 # Provide input paths via environment variables to avoid hard-coding confidential data.
 data_sameyear <- Sys.getenv("OC2_DATA_SAMEYEAR")

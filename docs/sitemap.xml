@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/404.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/404.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/articles/index.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/articles/overcoverage2.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/articles/overcoverage.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/authors.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/articles/overcoverage2.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/index.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/authors.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/reference/compute_mixing_weights.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/index.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/reference/compute_viterbi_paths.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/reference/compute_mixing_weights.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/reference/index.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/reference/compute_viterbi_paths.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/reference/model_BLB.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/reference/model_nonBLB.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/reference/model_BLB.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/reference/oc2_check_register_data.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/reference/model_nonBLB.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/reference/oc2_prepare_model_BLB_inputs.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/reference/oc2_check_register_data.html</loc>
   </url>
   <url>
-    <loc>https://brsantos.github.io/overcoverage2/reference/oc2_prepare_register_data.html</loc>
+    <loc>https://brsantos.github.io/overcoverage/reference/oc2_prepare_model_BLB_inputs.html</loc>
+  </url>
+  <url>
+    <loc>https://brsantos.github.io/overcoverage/reference/oc2_prepare_register_data.html</loc>
   </url>
 </urlset>

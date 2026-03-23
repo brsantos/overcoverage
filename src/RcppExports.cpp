@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // loglikelihood_ultrafast
 double loglikelihood_ultrafast(const NumericMatrix& y, const NumericVector& first, const NumericMatrix& combins, const NumericMatrix& s, const NumericMatrix& e, const NumericMatrix& i, const NumericMatrix& lambda, const NumericMatrix& epsilon1, const NumericMatrix& epsilon2, const NumericMatrix& epsilon3, const NumericVector& mixing_prop, const NumericVector& probs1, const NumericVector& probs2, const NumericVector& counts, int L);
-RcppExport SEXP _overcoverage2_loglikelihood_ultrafast(SEXP ySEXP, SEXP firstSEXP, SEXP combinsSEXP, SEXP sSEXP, SEXP eSEXP, SEXP iSEXP, SEXP lambdaSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP epsilon3SEXP, SEXP mixing_propSEXP, SEXP probs1SEXP, SEXP probs2SEXP, SEXP countsSEXP, SEXP LSEXP) {
+RcppExport SEXP _overcoverage_loglikelihood_ultrafast(SEXP ySEXP, SEXP firstSEXP, SEXP combinsSEXP, SEXP sSEXP, SEXP eSEXP, SEXP iSEXP, SEXP lambdaSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP epsilon3SEXP, SEXP mixing_propSEXP, SEXP probs1SEXP, SEXP probs2SEXP, SEXP countsSEXP, SEXP LSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -38,7 +38,7 @@ END_RCPP
 }
 // loglikelihood_cpp
 double loglikelihood_cpp(const arma::mat& y, const arma::vec& first, const arma::mat& combins, const arma::mat& s, const arma::mat& e, const arma::mat& i, const arma::mat& lambda, const arma::mat& epsilon1, const arma::mat& epsilon2, const arma::mat& epsilon3, const arma::vec& mixing_prop, const arma::vec& probs1, const arma::vec& probs2, const arma::vec& counts, int L);
-RcppExport SEXP _overcoverage2_loglikelihood_cpp(SEXP ySEXP, SEXP firstSEXP, SEXP combinsSEXP, SEXP sSEXP, SEXP eSEXP, SEXP iSEXP, SEXP lambdaSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP epsilon3SEXP, SEXP mixing_propSEXP, SEXP probs1SEXP, SEXP probs2SEXP, SEXP countsSEXP, SEXP LSEXP) {
+RcppExport SEXP _overcoverage_loglikelihood_cpp(SEXP ySEXP, SEXP firstSEXP, SEXP combinsSEXP, SEXP sSEXP, SEXP eSEXP, SEXP iSEXP, SEXP lambdaSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP epsilon3SEXP, SEXP mixing_propSEXP, SEXP probs1SEXP, SEXP probs2SEXP, SEXP countsSEXP, SEXP LSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -63,7 +63,7 @@ END_RCPP
 }
 // loglikelihood_fast_cpp
 double loglikelihood_fast_cpp(const arma::mat& y, const arma::vec& first, const arma::mat& combins, const arma::mat& s, const arma::mat& e, const arma::mat& i, const arma::mat& lambda, const arma::mat& epsilon1, const arma::mat& epsilon2, const arma::mat& epsilon3, const arma::vec& mixing_prop, const arma::vec& probs1, const arma::vec& probs2, const arma::vec& counts, int L);
-RcppExport SEXP _overcoverage2_loglikelihood_fast_cpp(SEXP ySEXP, SEXP firstSEXP, SEXP combinsSEXP, SEXP sSEXP, SEXP eSEXP, SEXP iSEXP, SEXP lambdaSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP epsilon3SEXP, SEXP mixing_propSEXP, SEXP probs1SEXP, SEXP probs2SEXP, SEXP countsSEXP, SEXP LSEXP) {
+RcppExport SEXP _overcoverage_loglikelihood_fast_cpp(SEXP ySEXP, SEXP firstSEXP, SEXP combinsSEXP, SEXP sSEXP, SEXP eSEXP, SEXP iSEXP, SEXP lambdaSEXP, SEXP epsilon1SEXP, SEXP epsilon2SEXP, SEXP epsilon3SEXP, SEXP mixing_propSEXP, SEXP probs1SEXP, SEXP probs2SEXP, SEXP countsSEXP, SEXP LSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -88,7 +88,7 @@ END_RCPP
 }
 // loglikelihood_BLB_parallel
 double loglikelihood_BLB_parallel(const arma::mat& y, const arma::mat& covariates, const arma::mat& age2, const arma::mat& age3, const arma::mat& tin2, const arma::mat& tin3, const arma::mat& X, const arma::vec& initial, const arma::vec& first, int L, const arma::mat& combins, unsigned int& n, NumericVector& proportions, const arma::vec& params);
-RcppExport SEXP _overcoverage2_loglikelihood_BLB_parallel(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP nSEXP, SEXP proportionsSEXP, SEXP paramsSEXP) {
+RcppExport SEXP _overcoverage_loglikelihood_BLB_parallel(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP nSEXP, SEXP proportionsSEXP, SEXP paramsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -112,7 +112,7 @@ END_RCPP
 }
 // loglikelihood_BLB_parallel_legacy
 double loglikelihood_BLB_parallel_legacy(const arma::mat& y, const arma::mat& covariates, const arma::mat& age2, const arma::mat& age3, const arma::mat& tin2, const arma::mat& tin3, const arma::mat& X, const arma::vec& initial, const arma::vec& first, int L, const arma::mat& combins, unsigned int& n, NumericVector& proportions, const arma::vec& params);
-RcppExport SEXP _overcoverage2_loglikelihood_BLB_parallel_legacy(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP nSEXP, SEXP proportionsSEXP, SEXP paramsSEXP) {
+RcppExport SEXP _overcoverage_loglikelihood_BLB_parallel_legacy(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP nSEXP, SEXP proportionsSEXP, SEXP paramsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -136,7 +136,7 @@ END_RCPP
 }
 // loglikelihood_nonBLB_parallel
 double loglikelihood_nonBLB_parallel(const arma::mat& y, const arma::mat& covariates, const arma::mat& age2, const arma::mat& age3, const arma::mat& tin2, const arma::mat& tin3, const arma::mat& X, const arma::vec& initial, const arma::vec& first, int L, const arma::mat& combins, const arma::vec& params);
-RcppExport SEXP _overcoverage2_loglikelihood_nonBLB_parallel(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP paramsSEXP) {
+RcppExport SEXP _overcoverage_loglikelihood_nonBLB_parallel(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP paramsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -158,7 +158,7 @@ END_RCPP
 }
 // loglikelihood_nonBLB_parallel_legacy
 double loglikelihood_nonBLB_parallel_legacy(const arma::mat& y, const arma::mat& covariates, const arma::mat& age2, const arma::mat& age3, const arma::mat& tin2, const arma::mat& tin3, const arma::mat& X, const arma::vec& initial, const arma::vec& first, int L, const arma::mat& combins, const arma::vec& params);
-RcppExport SEXP _overcoverage2_loglikelihood_nonBLB_parallel_legacy(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP paramsSEXP) {
+RcppExport SEXP _overcoverage_loglikelihood_nonBLB_parallel_legacy(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP paramsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -180,7 +180,7 @@ END_RCPP
 }
 // mixing_probs
 NumericMatrix mixing_probs(const arma::mat& y, const arma::mat& covariates, const arma::mat& age2, const arma::mat& age3, const arma::mat& tin2, const arma::mat& tin3, const arma::mat& X, const arma::vec& initial, const arma::vec& first, int L, const arma::mat& combins, const arma::vec& params);
-RcppExport SEXP _overcoverage2_mixing_probs(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP paramsSEXP) {
+RcppExport SEXP _overcoverage_mixing_probs(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP combinsSEXP, SEXP paramsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -202,7 +202,7 @@ END_RCPP
 }
 // viterbi
 NumericMatrix viterbi(const arma::mat& y, const arma::mat& covariates, const arma::mat& age2, const arma::mat& age3, const arma::mat& tin2, const arma::mat& tin3, const arma::mat& combins, const arma::mat& X, const arma::vec& initial, const arma::vec& first, int L, const arma::vec& params, const arma::mat& mixing);
-RcppExport SEXP _overcoverage2_viterbi(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP combinsSEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP paramsSEXP, SEXP mixingSEXP) {
+RcppExport SEXP _overcoverage_viterbi(SEXP ySEXP, SEXP covariatesSEXP, SEXP age2SEXP, SEXP age3SEXP, SEXP tin2SEXP, SEXP tin3SEXP, SEXP combinsSEXP, SEXP XSEXP, SEXP initialSEXP, SEXP firstSEXP, SEXP LSEXP, SEXP paramsSEXP, SEXP mixingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -225,19 +225,19 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_overcoverage2_loglikelihood_ultrafast", (DL_FUNC) &_overcoverage2_loglikelihood_ultrafast, 15},
-    {"_overcoverage2_loglikelihood_cpp", (DL_FUNC) &_overcoverage2_loglikelihood_cpp, 15},
-    {"_overcoverage2_loglikelihood_fast_cpp", (DL_FUNC) &_overcoverage2_loglikelihood_fast_cpp, 15},
-    {"_overcoverage2_loglikelihood_BLB_parallel", (DL_FUNC) &_overcoverage2_loglikelihood_BLB_parallel, 14},
-    {"_overcoverage2_loglikelihood_BLB_parallel_legacy", (DL_FUNC) &_overcoverage2_loglikelihood_BLB_parallel_legacy, 14},
-    {"_overcoverage2_loglikelihood_nonBLB_parallel", (DL_FUNC) &_overcoverage2_loglikelihood_nonBLB_parallel, 12},
-    {"_overcoverage2_loglikelihood_nonBLB_parallel_legacy", (DL_FUNC) &_overcoverage2_loglikelihood_nonBLB_parallel_legacy, 12},
-    {"_overcoverage2_mixing_probs", (DL_FUNC) &_overcoverage2_mixing_probs, 12},
-    {"_overcoverage2_viterbi", (DL_FUNC) &_overcoverage2_viterbi, 13},
+    {"_overcoverage_loglikelihood_ultrafast", (DL_FUNC) &_overcoverage_loglikelihood_ultrafast, 15},
+    {"_overcoverage_loglikelihood_cpp", (DL_FUNC) &_overcoverage_loglikelihood_cpp, 15},
+    {"_overcoverage_loglikelihood_fast_cpp", (DL_FUNC) &_overcoverage_loglikelihood_fast_cpp, 15},
+    {"_overcoverage_loglikelihood_BLB_parallel", (DL_FUNC) &_overcoverage_loglikelihood_BLB_parallel, 14},
+    {"_overcoverage_loglikelihood_BLB_parallel_legacy", (DL_FUNC) &_overcoverage_loglikelihood_BLB_parallel_legacy, 14},
+    {"_overcoverage_loglikelihood_nonBLB_parallel", (DL_FUNC) &_overcoverage_loglikelihood_nonBLB_parallel, 12},
+    {"_overcoverage_loglikelihood_nonBLB_parallel_legacy", (DL_FUNC) &_overcoverage_loglikelihood_nonBLB_parallel_legacy, 12},
+    {"_overcoverage_mixing_probs", (DL_FUNC) &_overcoverage_mixing_probs, 12},
+    {"_overcoverage_viterbi", (DL_FUNC) &_overcoverage_viterbi, 13},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_overcoverage2(DllInfo *dll) {
+RcppExport void R_init_overcoverage(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

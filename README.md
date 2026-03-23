@@ -1,4 +1,6 @@
-# overcoverage2
+<img src="man/figures/overcoverage_small.png" align="right" width="140" />
+
+# overcoverage
 
 Capture-Recapture Hidden Markov Models for register-based population inference.
 The package includes reusable checks to detect inconsistencies in register
@@ -24,7 +26,7 @@ sudo apt-get install -y libtbb-dev
 Below is a minimal example using simulated inputs. Replace these with your data and starting values.
 
 ```r
-library(overcoverage2)
+library(overcoverage)
 
 set.seed(123)
 N <- 200

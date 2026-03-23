@@ -2,9 +2,9 @@ pandoc: 2.19.2
 pkgdown: 2.0.8
 pkgdown_sha: ~
 articles:
-  overcoverage2: overcoverage2.html
-last_built: 2026-03-22T22:12Z
+  overcoverage: overcoverage.html
+last_built: 2026-03-23T18:35Z
 urls:
-  reference: https://brsantos.github.io/overcoverage2/reference
-  article: https://brsantos.github.io/overcoverage2/articles
+  reference: https://brsantos.github.io/overcoverage/reference
+  article: https://brsantos.github.io/overcoverage/articles
 

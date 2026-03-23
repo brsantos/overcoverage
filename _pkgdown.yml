@@ -1,10 +1,10 @@
-url: https://brsantos.github.io/overcoverage2/
+url: https://brsantos.github.io/overcoverage/
 
 template:
   bootstrap: 5
 
 home:
-  title: overcoverage2
+  title: overcoverage
   description: Capture-Recapture Hidden Markov Models for register-based population inference. The package can check for inconsistencies in register data before modeling.
   strip_header: true
 
