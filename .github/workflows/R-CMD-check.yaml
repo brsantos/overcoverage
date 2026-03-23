@@ -19,7 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest, r: "release"}
+          - {os: ubuntu-latest, r: "release", cran: true}
+          - {os: windows-latest, r: "release", cran: false}
+          - {os: macos-latest, r: "release", cran: false}
 
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +29,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v2
 
       - name: Install system dependencies
+        if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y libtbb-dev
 
       - uses: r-lib/actions/setup-r@v2
@@ -34,6 +37,7 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - name: Install RcppParallel system libs
+        if: runner.os == 'Linux'
         run: Rscript -e 'install.packages("RcppParallel", type = "source", repos = "https://cloud.r-project.org")'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
@@ -43,5 +47,5 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v2
         with:
-          args: 'c("--no-manual")'
+          args: ${{ matrix.config.cran && 'c("--no-manual", "--as-cran")' || 'c("--no-manual")' }}
           build_args: 'c("--no-manual")'
